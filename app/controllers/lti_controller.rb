@@ -21,8 +21,10 @@ class LtiController < ApplicationController
     end
 
     #we have valid and authenticated LTI request
-    #store params into instance variance
-    @launch_params = params;
+    #store params into class level instance variable for later
+    @@launch_params = params;
+    @params = params
+
     # email = params[:lis_person_contact_email_primary]
 
     #Request was valid, Now find or create user, along with the deck
@@ -46,25 +48,38 @@ class LtiController < ApplicationController
   end
 
   def submitscore
-    @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
-    Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
-    @@launch_params)
-    # add extension
-    @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
+    # @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
+    # Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
+    # @@launch_params)
+    # # add extension
+    # @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
 
-    if !@tp.outcome_service?
+    #get the info needed to submit the score back to the TC
+    outcome_service = @@launch_params[:lis_outcome_service_url]
+    sourcedid = @@launch_params[:lis_result_sourcedid]
+
+    #if one of these params is nil, no score should be sent back
+    if outcome_service.nil? || sourcedid.nil?
       @message = "This tool wasn't launched as an outcome service"
       puts "This tool wasn't launched as an outcome service"
-      render(:launch_error)
+      render "launch_error"
+      return
     end
 
-    res = @tp.post_extended_replace_result!(score: params[:result])
+    # if !@tp.outcome_service?
+    #   @message = "This tool wasn't launched as an outcome service"
+    #   puts "This tool wasn't launched as an outcome service"
+    #   render(:launch_error)
+    # end
 
-    if res.success?
-      puts "Score Submitted"
-    else
-      puts "Error during score submission"
-    end
+    # res = @tp.post_extended_replace_result!(score: params[:result])
+    # res = @tp.post_extended_replace_result!(score: 0.5)
+
+    # if res.success?
+    #   puts "Score Submitted"
+    # else
+    #   puts "Error during score submission"
+    # end
     redirect_to @@launch_params[:launch_presentation_return_url]
   end
 

@@ -2,7 +2,7 @@
 <p>We made it through the authentication part of this LTI interface thing<p>
 
 <ul>
-<% @launch_params.each do |param| %>
+<% @params.each do |param| %>
 
 <li>
 <%= param %>
@@ -10,3 +10,5 @@
 
 <% end %>
 </ul>
+
+<%= link_to "Test Submission", controller: "lti", action: "submitscore" %>
