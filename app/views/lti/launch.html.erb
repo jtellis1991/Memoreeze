@@ -1,2 +1,12 @@
-<h1>Lti#launch</h1>
-<p>Find me in app/views/lti/launch.html.erb</p>
+<h1>Hooray!</h1>
+<p>We made it through the authentication part of this LTI interface thing<p>
+
+<ul>
+<% @launch_params.each do |param| %>
+
+<li>
+<%= param %>
+<li>
+
+<% end %>
+</ul>

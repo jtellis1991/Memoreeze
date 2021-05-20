@@ -11,25 +11,18 @@ class LtiController < ApplicationController
       return
     end
 
-
-    require 'oauth/request_proxy/action_controller_request'
     #create TP object with TC's key, corresponding secret in the config file, and other params sent by TC post request
-    @provider = IMS::LTI::ToolProvider.new(
-      params[:oauth_consumer_key],
-      Rails.configuration.lti_settings[params[:oauth_consumer_key]],
-      params
-    )
+    @authenticator = IMS::LTI::Services::MessageAuthenticator.new(request.url, request.request_parameters, Rails.configuration.lti_settings[params[:oauth_consumer_key]])
 
     # if the provided secret by TC does not match the TP's corresponding secret, request is invalid
-    if not @provider.valid_request?(request)
+    if not @authenticator.valid_signature?
       render :launch_error, status: 401
       return
     end
 
     #we have valid and authenticated LTI request
     #store params into instance variance
-
-    @launch_params=params;
+    @launch_params = params;
     # email = params[:lis_person_contact_email_primary]
 
     #Request was valid, Now find or create user, along with the deck
@@ -49,7 +42,7 @@ class LtiController < ApplicationController
     # authorized_user = User.find_by_email(email)
     # session[:user_id] = authorized_user.id
     #redirect the user to give quiz starting from question id 1
-    redirect_to(:controller => "static", :action => "landing_page")
+    # redirect_to(:controller => "static", :action => "landing_page")
   end
 
   def submitscore
