@@ -18,5 +18,7 @@ module VanillaRails
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.lti_settings = Rails.application.config_for(:lti_settings)
+
   end
 end
