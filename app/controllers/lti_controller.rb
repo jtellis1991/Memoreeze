@@ -5,17 +5,23 @@ class LtiController < ApplicationController
     #If set, then hide the header and footer
     session[:isLTI]=true
 
-    #check to see if the LTI post request from TC has a consumer key
-    if not Rails.configuration.lti_settings[params[:oauth_consumer_key]]
+    # create TP object with TC's key, corresponding secret in the config file, and other params sent by TC post request
+    require 'oauth/request_proxy/action_controller_request'
+    @provider = IMS::LTI::ToolProvider.new(
+      params[:oauth_consumer_key],
+      Rails.configuration.lti_settings[params[:oauth_consumer_key]],
+      params
+    )
+
+    # if the provided secret by TC does not match the TP's corresponding secret, request is invalid
+    # *****seems unable to handle get request to the page /lti/launch*****
+    if not @provider.valid_request?(request)
       render :launch_error, status: 401
       return
     end
 
-    #create TP object with TC's key, corresponding secret in the config file, and other params sent by TC post request
-    @authenticator = IMS::LTI::Services::MessageAuthenticator.new(request.url, request.request_parameters, Rails.configuration.lti_settings[params[:oauth_consumer_key]])
-
-    # if the provided secret by TC does not match the TP's corresponding secret, request is invalid
-    if not @authenticator.valid_signature?
+    #check to see if the LTI post request from TC has a consumer key
+    if not Rails.configuration.lti_settings[params[:oauth_consumer_key]]
       render :launch_error, status: 401
       return
     end
@@ -24,6 +30,7 @@ class LtiController < ApplicationController
     #store params into class level instance variable for later
     @@launch_params = params;
     @params = params
+
 
     # email = params[:lis_person_contact_email_primary]
 
@@ -48,38 +55,26 @@ class LtiController < ApplicationController
   end
 
   def submitscore
-    # @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
-    # Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
-    # @@launch_params)
-    # # add extension
-    # @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
+    @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
+    Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
+    @@launch_params)
+    # add extension
+    @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
 
-    #get the info needed to submit the score back to the TC
-    outcome_service = @@launch_params[:lis_outcome_service_url]
-    sourcedid = @@launch_params[:lis_result_sourcedid]
-
-    #if one of these params is nil, no score should be sent back
-    if outcome_service.nil? || sourcedid.nil?
+    if !@tp.outcome_service?
       @message = "This tool wasn't launched as an outcome service"
       puts "This tool wasn't launched as an outcome service"
-      render "launch_error"
-      return
+      render(:launch_error)
     end
 
-    # if !@tp.outcome_service?
-    #   @message = "This tool wasn't launched as an outcome service"
-    #   puts "This tool wasn't launched as an outcome service"
-    #   render(:launch_error)
-    # end
+    # res = @tp.post_extended_replace_result!(score: params[:score])
+    res = @tp.post_extended_replace_result!(score: 0.7)
 
-    # res = @tp.post_extended_replace_result!(score: params[:result])
-    # res = @tp.post_extended_replace_result!(score: 0.5)
-
-    # if res.success?
-    #   puts "Score Submitted"
-    # else
-    #   puts "Error during score submission"
-    # end
+    if res.success?
+      puts "Score Submitted"
+    else
+      puts "Error during score submission"
+    end
     redirect_to @@launch_params[:launch_presentation_return_url]
   end
 
