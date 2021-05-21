@@ -1,9 +1,7 @@
-class StaticController < ApplicationController
+# frozen_string_literal: true
 
-  def xml
-  end
-  
-  def landing_page
-  end
-  
+class StaticController < ApplicationController
+  def xml; end
+
+  def landing_page; end
 end
