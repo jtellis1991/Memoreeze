@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id               :bigint           not null, primary key
+#  tool_consumer_id :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 require "test_helper"
 
 class CourseTest < ActiveSupport::TestCase

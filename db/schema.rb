@@ -17,12 +17,14 @@ ActiveRecord::Schema.define(version: 2021_05_21_011819) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "course_id"
+    t.string "resource_link_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "courses", force: :cascade do |t|
     t.integer "tool_consumer_id"
+    t.string "context_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_011819) do
   create_table "users", force: :cascade do |t|
     t.integer "role"
     t.integer "tool_consumer_id"
+    t.string "tc_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

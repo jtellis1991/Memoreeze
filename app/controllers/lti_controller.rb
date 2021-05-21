@@ -33,11 +33,11 @@ class LtiController < ApplicationController
     @@launch_params = params
     @params = params
 
-    @course = Course.find_or_create_by(course_id: params[:context_id])
-    @assignment = Assignment.find_or_create_by(assignment_id: params[:resource_link_id])
-    @user = User.find_or_create_by(user_id: params[:user_id])
+    @course = Course.find_or_create_by(context_id: params[:context_id])
+    @assignment = Assignment.find_or_create_by(resource_link_id: params[:resource_link_id])
+    @user = User.find_or_create_by(tc_user_id: params[:user_id])
     @user.role = params[:roles]
-    @tool_consumer = ToolConsumer.find_or_create_by(tool_consumer_id: params[:tool_consumer_instance_guid])
+    @tool_consumer = ToolConsumer.find_or_create_by(guid: params[:tool_consumer_instance_guid])
 
     # email = params[:lis_person_contact_email_primary]
 

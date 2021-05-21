@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :courses
   resources :users
-  get 'xml', to: 'static#xml'
+  
+  get 'config.xml', to: 'static#xml_config'
 
-  get 'lti/launch'
-  post 'lti/launch'
+  get 'launch', to: 'lti#launch'
+  post 'launch', to: 'lti#launch'
 
   get 'lti/submitscore'
   post 'lti/submitscore'
