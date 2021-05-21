@@ -1,0 +1,27 @@
+<%= form_with(model: tool_consumer) do |form| %>
+  <% if tool_consumer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tool_consumer.errors.count, "error") %> prohibited this tool_consumer from being saved:</h2>
+
+      <ul>
+        <% tool_consumer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :guid %>
+    <%= form.text_field :guid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

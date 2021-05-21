@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tool Consumers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Guid</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tool_consumers.each do |tool_consumer| %>
+      <tr>
+        <td><%= tool_consumer.guid %></td>
+        <td><%= tool_consumer.name %></td>
+        <td><%= link_to 'Show', tool_consumer %></td>
+        <td><%= link_to 'Edit', edit_tool_consumer_path(tool_consumer) %></td>
+        <td><%= link_to 'Destroy', tool_consumer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tool Consumer', new_tool_consumer_path %>
