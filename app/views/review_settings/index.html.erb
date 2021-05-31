@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Review Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Reviews per day</th>
+      <th>New per day</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @review_settings.each do |review_setting| %>
+      <tr>
+        <td><%= review_setting.user_id %></td>
+        <td><%= review_setting.reviews_per_day %></td>
+        <td><%= review_setting.new_per_day %></td>
+        <td><%= link_to 'Show', review_setting %></td>
+        <td><%= link_to 'Edit', edit_review_setting_path(review_setting) %></td>
+        <td><%= link_to 'Destroy', review_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Review Setting', new_review_setting_path %>

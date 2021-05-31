@@ -1,0 +1,2 @@
+module ReviewSettingsHelper
+end

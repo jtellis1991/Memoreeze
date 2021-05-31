@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: review_settings
+#
+#  id              :bigint           not null, primary key
+#  user_id         :integer
+#  reviews_per_day :string
+#  new_per_day     :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  user_id: 1
+  reviews_per_day: MyString
+  new_per_day: 1
+
+two:
+  user_id: 1
+  reviews_per_day: MyString
+  new_per_day: 1

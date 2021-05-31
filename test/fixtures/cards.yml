@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id         :bigint           not null, primary key
+#  front      :text
+#  back       :text
+#  deck_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  front: MyText
+  back: MyText
+  deck_id: 1
+
+two:
+  front: MyText
+  back: MyText
+  deck_id: 1

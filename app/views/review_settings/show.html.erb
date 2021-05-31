@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review_setting.user_id %>
+</p>
+
+<p>
+  <strong>Reviews per day:</strong>
+  <%= @review_setting.reviews_per_day %>
+</p>
+
+<p>
+  <strong>New per day:</strong>
+  <%= @review_setting.new_per_day %>
+</p>
+
+<%= link_to 'Edit', edit_review_setting_path(@review_setting) %> |
+<%= link_to 'Back', review_settings_path %>

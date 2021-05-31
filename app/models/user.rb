@@ -3,8 +3,9 @@
 # Table name: users
 #
 #  id               :bigint           not null, primary key
-#  role             :integer
+#  role             :string
 #  tool_consumer_id :integer
+#  tc_user_id       :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
