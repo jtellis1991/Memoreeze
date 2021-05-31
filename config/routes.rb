@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :courses
   resources :users
   
-  get 'config.xml', to: 'static#xml_config'
+  #forced route to default to xml. Thanks Jelani!
+  get 'config.xml', to: 'static#xml_config', :defaults => { :format => 'xml'}
 
   get 'launch', to: 'lti#launch'
   post 'launch', to: 'lti#launch'

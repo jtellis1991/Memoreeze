@@ -16,7 +16,7 @@ class LtiController < ApplicationController
     )
 
     # if the provided secret by TC does not match the TP's corresponding secret, request is invalid
-    # *****seems unable to handle get request to the page /lti/launch*****
+    # *****seems unable to handle GET request to the page /lti/launch*****
     unless @provider.valid_request?(request)
       render :launch_error, status: 401
       return
