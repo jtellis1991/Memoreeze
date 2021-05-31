@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: grades
+#
+#  id            :bigint           not null, primary key
+#  deck_id       :integer
+#  score         :float
+#  enrollment_id :integer
+#  assignment_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  deck_id: 1
+  score: 1.5
+  enrollment_id: 1
+  assignment_id: 1
+
+two:
+  deck_id: 1
+  score: 1.5
+  enrollment_id: 1
+  assignment_id: 1

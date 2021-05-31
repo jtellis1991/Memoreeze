@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id               :bigint           not null, primary key
+#  tool_consumer_id :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+one:
+  tool_consumer_id: 1
+
+two:
+  tool_consumer_id: 1

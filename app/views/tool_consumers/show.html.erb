@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Guid:</strong>
+  <%= @tool_consumer.guid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tool_consumer.name %>
+</p>
+
+<%= link_to 'Edit', edit_tool_consumer_path(@tool_consumer) %> |
+<%= link_to 'Back', tool_consumers_path %>
