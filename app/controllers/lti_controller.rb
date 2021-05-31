@@ -33,32 +33,19 @@ class LtiController < ApplicationController
     @@launch_params = params
     @params = params
 
-    @course = Course.find_or_create_by(context_id: params[:context_id])
-    @assignment = Assignment.find_or_create_by(resource_link_id: params[:resource_link_id])
-    @user = User.find_or_create_by(tc_user_id: params[:user_id])
-    @user.role = params[:roles]
+    # Look up User, Course, and Assignment for the Tool Consumer, or create if not in database
+    # Note: normally this would be logging in user with authentication, but the LTI-LMS essentially does this
+    # this means we can immediately take these params and direct someone to the study session
     @tool_consumer = ToolConsumer.find_or_create_by(guid: params[:tool_consumer_instance_guid])
+    @user = User.create_with(tool_consumer_id: @tool_consumer.id, role: params[:roles]).find_or_create_by(tc_user_id: params[:user_id])
+    @course = Course.create_with(tool_consumer_id: @tool_consumer.id).find_or_create_by(context_id: params[:context_id])
+    @assignment = Assignment.create_with(course_id: @course.id).find_or_create_by(resource_link_id: params[:resource_link_id])
+    
+    # Store the user in the session
+    session[:user_id] = @user.id
 
-    # email = params[:lis_person_contact_email_primary]
-
-    # Request was valid, Now find or create user, along with the deck
-    # @user = User.where(email: email).first
-    # if @user.blank?
-    #   @user = User.new(:username => email,
-    #                    :email => email,
-    #                    :password => email,
-    #                    :password_confirmation => email)
-    #   if !@user.save
-    #     puts @user.errors.full_messages.first
-    #   end
-    # end
-
-    # Login the user and create his session.
-    # authorized_user = User.authenticate(email,email)
-    # authorized_user = User.find_by_email(email)
-    # session[:user_id] = authorized_user.id
-    # redirect the user to give quiz starting from question id 1
-    # redirect_to(:controller => "static", :action => "landing_page")
+    # redirect the user to the assignment
+    redirect_to assignment_url(@assignment)
   end
 
   def submitscore

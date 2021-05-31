@@ -15,6 +15,6 @@ class User < ApplicationRecord
   belongs_to(:tool_consumer, { :required => false, :class_name => "ToolConsumer", :foreign_key => "tool_consumer_id" })
 
 
-  enum({ :role => { :student_teacher_admin => 0 } })
+  # enum({ :role => { :learner_teacher_admin => 0 } })
 
 end
