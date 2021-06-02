@@ -13,18 +13,15 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter name of new deck" %>
   </div>
 
-  <div class="field">
+
     <%= form.hidden_field :user_id %>
-  </div>
-
-  <div class="field">
     <%= form.hidden_field :assignment_id %>
-  </div>
+
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary btn-lg mt-3" %>
   </div>
 <% end %>

@@ -1,5 +1,10 @@
-<h1>New Deck</h1>
+<div class="card">
+  <div class="card-header display-4">
+    New Deck
+  </div>
+  <div class="card-body">
+    <%= render 'form', deck: @deck %>
+  </div>
+</div>
 
-<%= render 'form', deck: @deck %>
-
-<%= link_to 'Back', assignment_url(@deck.assignment, :user_id => @deck.user.id) %>
+<%= link_to 'Back', assignment_url(@deck.assignment, :user_id => @deck.user.id), class: "btn btn-warning mt-3" %>
