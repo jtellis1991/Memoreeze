@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_05_31_220739) do
   create_table "assignments", force: :cascade do |t|
     t.integer "course_id"
     t.string "resource_link_id"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

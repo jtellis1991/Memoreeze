@@ -3,6 +3,7 @@ class CreateAssignments < ActiveRecord::Migration[6.1]
     create_table :assignments do |t|
       t.integer :course_id
       t.string  :resource_link_id
+      t.string  :name
 
       t.timestamps
     end

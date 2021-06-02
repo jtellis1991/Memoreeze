@@ -2,4 +2,4 @@
 
 <%= render 'form', deck: @deck %>
 
-<%= link_to 'Back', decks_path %>
+<%= link_to 'Back', assignment_url(@deck.assignment, :user_id => @deck.user.id) %>

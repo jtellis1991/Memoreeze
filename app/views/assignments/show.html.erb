@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @assignment.course_id %>
-</p>
+<h1>
+  <%= @assignment.name %>
+</h1>
 
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
-<%= link_to 'Back', assignments_path %>
+
+<% if @assignment.decks.first.nil? %>
+<%= link_to 'Create New Deck', new_deck_path(:assignment_id => @assignment.id, :user_id => @user.id) %> 
+<% else %>
+<%= link_to 'Edit Deck', edit_deck_path(@assignment.decks.first) %> 
+<%= link_to 'Show Deck', deck_path(@assignment.decks.first) %>
+<% end %>

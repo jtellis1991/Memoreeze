@@ -1,5 +1,8 @@
 class DecksController < ApplicationController
   before_action :set_deck, only: %i[ show edit update destroy ]
+  #Added this because kept getting error with invalid authenticity token. 
+  #Suspect issue might be the use the app within the tool consumer window
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   # GET /decks or /decks.json
   def index
@@ -13,6 +16,8 @@ class DecksController < ApplicationController
   # GET /decks/new
   def new
     @deck = Deck.new
+    @deck.assignment = Assignment.find_by_id(params[:assignment_id])
+    @deck.user = User.find_by_id(params[:user_id])
   end
 
   # GET /decks/1/edit

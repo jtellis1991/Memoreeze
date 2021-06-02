@@ -39,13 +39,10 @@ class LtiController < ApplicationController
     @tool_consumer = ToolConsumer.find_or_create_by(guid: params[:tool_consumer_instance_guid])
     @user = User.create_with(tool_consumer_id: @tool_consumer.id, role: params[:roles]).find_or_create_by(tc_user_id: params[:user_id])
     @course = Course.create_with(tool_consumer_id: @tool_consumer.id).find_or_create_by(context_id: params[:context_id])
-    @assignment = Assignment.create_with(course_id: @course.id).find_or_create_by(resource_link_id: params[:resource_link_id])
+    @assignment = Assignment.create_with(course_id: @course.id, name: params[:resource_link_title]).find_or_create_by(resource_link_id: params[:resource_link_id])
     
-    # Store the user in the session
-    session[:user_id] = @user.id
-
     # redirect the user to the assignment
-    redirect_to assignment_url(@assignment)
+    redirect_to assignment_url(@assignment, :user_id => @user.id)
   end
 
   def submitscore
