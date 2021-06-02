@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cards</h1>
+<h1>Cards in <%=@assignment.decks.first.name %></h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Target</th>
       <th scope="col">Front</th>
       <th scope="col">Back</th>
     </tr>
@@ -14,43 +15,15 @@
   <tbody>
     <% @cards.each_with_index do |card, index| %>
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
+        <td><%= index %></td>
+        <td><%= card.target %></td>
         <td><%= card.front %></td>
         <td><%= card.back %></td>
-        <td><%= card.deck_id %></td>
-        <td><%= link_to 'Show', card %></td>
-        <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+      
+  <%= render 'form', card: @deck.cards.build %>
 
-<br>
-
-<%= link_to 'New Card', new_card_path %>
+<%= link_to 'Return to Assignment', assignment_path(@assignment, :user_id => @user.id), class: "mt-3 btn btn-secondary" %>

@@ -1,9 +1,15 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
+  #Added this because kept getting error with invalid authenticity token. 
+  #Suspect issue might be the use the app within the tool consumer window
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   # GET /cards or /cards.json
   def index
     @cards = Assignment.find(params[:assignment_id]).decks.first.cards
+    @assignment = Assignment.find(params[:assignment_id])
+    @deck = @assignment.decks.first
+    @user = User.find(params[:user_id])
   end
 
   # GET /cards/1 or /cards/1.json
@@ -22,6 +28,8 @@ class CardsController < ApplicationController
   # POST /cards or /cards.json
   def create
     @card = Card.new(card_params)
+    @card.build_target(:body => "ffff")
+
 
     respond_to do |format|
       if @card.save
