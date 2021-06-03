@@ -22,4 +22,7 @@ Rails.application.routes.draw do
 
   get 'lti/submitscore'
   post 'lti/submitscore'
+
+  get ":cards/:id/front/edit" => "cards#edit_front"
+  get ":cards/:id/back/edit" => "cards#edit_back"
 end
