@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: targets
+#
+#  id         :bigint           not null, primary key
+#  body       :string
+#  card_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  body: MyString
+  card_id: 1
+
+two:
+  body: MyString
+  card_id: 1

@@ -1,0 +1,42 @@
+<%= form_with(model: card) do |form| %>
+  <% if card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+        <% card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :deck_id %>
+
+<table class="table table-striped">
+  <tbody>
+    <tr>
+    
+      <td>
+        <%= form.label :target, class: "sr-only"  %>
+        <%= form.text_area :target, class: "form-control", placeholder: "Target" %>
+      </td>
+
+      <td>
+        <%= form.label :front, class: "sr-only" %>
+        <%= form.text_area :front, class: "form-control", placeholder: "Front Text" %>
+      </td>
+
+      <td>
+        <%= form.label :back, class: "sr-only" %>
+        <%= form.text_area :back, class: "form-control", placeholder: "Back Text"  %>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>

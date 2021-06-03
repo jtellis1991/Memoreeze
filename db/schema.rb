@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_011819) do
+ActiveRecord::Schema.define(version: 2021_05_31_220739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2021_05_21_011819) do
   create_table "assignments", force: :cascade do |t|
     t.integer "course_id"
     t.string "resource_link_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.text "front"
+    t.text "back"
+    t.integer "deck_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -25,6 +34,14 @@ ActiveRecord::Schema.define(version: 2021_05_21_011819) do
   create_table "courses", force: :cascade do |t|
     t.integer "tool_consumer_id"
     t.string "context_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "assignment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,6 +58,40 @@ ActiveRecord::Schema.define(version: 2021_05_21_011819) do
     t.float "score"
     t.integer "enrollment_id"
     t.integer "assignment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer "review_id"
+    t.float "again"
+    t.float "hard"
+    t.float "good"
+    t.float "easy"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "review_settings", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "reviews_per_day"
+    t.integer "new_per_day"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "next_review"
+    t.string "milliseconds_elapsed"
+    t.integer "card_id"
+    t.integer "grade_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "targets", force: :cascade do |t|
+    t.string "body"
+    t.integer "card_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: results
+#
+#  id         :bigint           not null, primary key
+#  review_id  :integer
+#  again      :float
+#  hard       :float
+#  good       :float
+#  easy       :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  review_id: 1
+  again: 1.5
+  hard: 1.5
+  good: 1.5
+  easy: 1.5
+
+two:
+  review_id: 1
+  again: 1.5
+  hard: 1.5
+  good: 1.5
+  easy: 1.5

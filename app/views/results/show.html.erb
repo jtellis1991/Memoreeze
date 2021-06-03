@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @result.review_id %>
+</p>
+
+<p>
+  <strong>Again:</strong>
+  <%= @result.again %>
+</p>
+
+<p>
+  <strong>Hard:</strong>
+  <%= @result.hard %>
+</p>
+
+<p>
+  <strong>Good:</strong>
+  <%= @result.good %>
+</p>
+
+<p>
+  <strong>Easy:</strong>
+  <%= @result.easy %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

@@ -6,12 +6,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render "shared/cdn_assets" %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= render "layouts/header" unless session[:isLTI] %>
-    <%= yield %>
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+          <% if notice.present? %>
+            <%= render "shared/flash", message: notice, css_class: "success" %>
+          <% end %>
+
+          <% if alert.present? %>
+            <%= render "shared/flash", message: alert, css_class: "danger" %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

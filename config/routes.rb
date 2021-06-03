@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :targets
+  resources :review_settings
+  resources :results
+  resources :decks
+  resources :reviews
+  resources :cards
   resources :tool_consumers
   resources :grades
   resources :assignments

@@ -1,9 +1,35 @@
-<p id="notice"><%= notice %></p>
+<% if @assignment.decks.first.nil? && @user.role == "Instructor" %>
 
-<p>
-  <strong>Course:</strong>
-  <%= @assignment.course_id %>
-</p>
+  <div class="card">
+    <div class="card-header display-4">
+      <%= @assignment.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">This assignment has no deck associated with it.</h5>
+      <p class="card-text">Choose an existing deck to associate with the assignment or create a new deck. </p>
+      <%= link_to 'Create New Deck', new_deck_path(:assignment_id => @assignment.id, :user_id => @user.id), class: "btn btn-primary" %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
-<%= link_to 'Back', assignments_path %>
+<% elsif @user.role == "Instructor" %>
+
+  <div class="card">
+    <div class="card-header display-4">
+      <%= @assignment.decks.first.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">This deck has <%= pluralize(@assignment.decks.first.cards.count, "card") %></h5>
+      <p class="card-text">Edit the deck to add or modify cards. </p>
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Edit Cards in Deck', cards_path(:assignment_id => @assignment.id, :user_id => @user.id), class: "btn btn-primary" %> 
+        <%= link_to 'Destroy Deck', @assignment.decks.first, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  
+
+<% else %>
+
+  <%= link_to 'Show Deck', deck_path(@assignment.decks.first) %>
+
+<% end %>
