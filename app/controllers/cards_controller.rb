@@ -14,6 +14,8 @@ class CardsController < ApplicationController
 
   # GET /cards/1 or /cards/1.json
   def show
+    @user = User.find(params[:user_id])
+    @assignment = Assignment.find(params[:user_id])
   end
 
   # GET /cards/new

@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  course_id        :integer
 #  resource_link_id :string
+#  name             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
