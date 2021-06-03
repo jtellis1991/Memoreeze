@@ -25,6 +25,20 @@ class CardsController < ApplicationController
   def edit
   end
 
+  def edit_front
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit_back
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # POST /cards or /cards.json
   def create
     @card = Card.new(card_params.except(:target))

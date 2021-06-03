@@ -17,9 +17,23 @@
     <% @cards.each_with_index do |card, index| %>
       <tr>
         <td><%= index+1 %></td>
-        <td><%= card.target.body %></td>
-        <td><%= card.front %></td>
-        <td><%= card.back %></td>
+        <td>
+          <%= card.target.body %>
+        </td>
+        <td>
+          <div id="<%= dom_id(card) %>_front">
+            <%= link_to "cards/#{card.id}/front/edit", remote: true do %>
+              <%= card.front %>
+            <% end %>
+          </div>
+        </td>
+        <td>
+          <div id="<%= dom_id(card) %>_back">
+            <%= link_to "cards/#{card.id}/back/edit", remote: true do %>
+              <%= card.back %>
+            <% end %>
+          </div>
+        </td>
         <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger" %></td>
       </tr>
     <% end %>
