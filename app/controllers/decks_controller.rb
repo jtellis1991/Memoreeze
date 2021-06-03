@@ -30,7 +30,7 @@ class DecksController < ApplicationController
 
     respond_to do |format|
       if @deck.save
-        format.html { redirect_to @deck, notice: "Deck was successfully created." }
+        format.html { redirect_to cards_path(:assignment_id => @deck.assignment.id, :user_id => @deck.user_id), notice: "Deck was successfully created." }
         format.json { render :show, status: :created, location: @deck }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -27,13 +27,12 @@ class CardsController < ApplicationController
 
   # POST /cards or /cards.json
   def create
-    @card = Card.new(card_params)
-    @card.build_target(:body => "ffff")
-
+    @card = Card.new(card_params.except(:target))
+    @card.build_target(:body => params[:card][:target])
 
     respond_to do |format|
       if @card.save
-        format.html { redirect_to @card, notice: "Card was successfully created." }
+        format.html { redirect_to cards_path(:assignment_id => @card.deck.assignment.id, :user_id => @card.deck.user_id), notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,6 +71,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:front, :back, :deck_id)
+      params.require(:card).permit(:front, :back, :deck_id, :target)
     end
 end

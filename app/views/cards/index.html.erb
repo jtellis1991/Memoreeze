@@ -15,8 +15,8 @@
   <tbody>
     <% @cards.each_with_index do |card, index| %>
       <tr>
-        <td><%= index %></td>
-        <td><%= card.target %></td>
+        <td><%= index+1 %></td>
+        <td><%= card.target.body %></td>
         <td><%= card.front %></td>
         <td><%= card.back %></td>
       </tr>
