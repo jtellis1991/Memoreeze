@@ -9,6 +9,7 @@
       <th scope="col">Target</th>
       <th scope="col">Front</th>
       <th scope="col">Back</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
         <td><%= card.target.body %></td>
         <td><%= card.front %></td>
         <td><%= card.back %></td>
+        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -58,7 +58,7 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
     respond_to do |format|
-      format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
+      format.html { redirect_to cards_path(:assignment_id => @card.deck.assignment.id, :user_id => @card.deck.user_id), notice: "Card was successfully destroyed." }
       format.json { head :no_content }
     end
   end
