@@ -11,6 +11,19 @@ class DecksController < ApplicationController
 
   # GET /decks/1 or /decks/1.json
   def show
+    @user = User.find(params[:user_id])
+    
+    counter = 0;
+    @user.reviews.each do |review|
+      @deck.cards.each do |card|
+        if review.card == card
+          counter += 1
+        end
+      end
+    end
+    
+    @new_cards = @deck.cards.count - counter
+    @assignment = Assignment.find(params[:assignment_id])      
   end
 
   # GET /decks/new
