@@ -4,4 +4,4 @@ Memoreeze is an SRS app that uses IMS LTI to provide instructors the ability to 
 
 ![Domain Model](erd.png?raw=true "Domain Model")
 
-start
+end
