@@ -7,6 +7,7 @@
 #  milliseconds_elapsed :string
 #  card_id              :integer
 #  grade_id             :integer
+#  user_id              :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #

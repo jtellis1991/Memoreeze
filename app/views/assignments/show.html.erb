@@ -30,6 +30,17 @@
 
 <% else %>
 
-  <%= link_to 'Show Deck', deck_path(@assignment.decks.first) %>
+  <div class="card">
+    <div class="card-header display-4">
+      <%= @assignment.decks.first.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">This deck has <%= pluralize(@assignment.decks.first.cards.count, "card") %></h5>
+      <p class="card-text">Click link to review and learn new cards </p>
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Study Deck', deck_path(@assignment.decks.first, :assignment_id => @assignment.id, :user_id => @user.id) %>
+      </div>
+    </div>
+  </div>
 
 <% end %>

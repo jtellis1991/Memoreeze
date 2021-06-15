@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_05_31_220739) do
     t.string "milliseconds_elapsed"
     t.integer "card_id"
     t.integer "grade_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

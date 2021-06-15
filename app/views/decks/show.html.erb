@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
+  <div class="card">
+    <div class="card-header display-4">
+      <%= @deck.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">You have <%= pluralize(@new_cards, "new card") %></h5>
+      <p class="card-text">Click link to learn new cards </p>
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Study Cards', card_path(@deck.cards.first, :assignment_id => @assignment.id, :user_id => @user.id) %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @deck.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @deck.user_id %>
-</p>
-
-<p>
-  <strong>Assignment:</strong>
-  <%= @deck.assignment_id %>
-</p>
-
-<%= link_to 'Edit', edit_deck_path(@deck) %> |
-<%= link_to 'Back', decks_path %>
+<%= link_to 'Return to Assignment', assignment_path(@assignment, :user_id => @user.id), class: "mt-3 btn btn-secondary" %>

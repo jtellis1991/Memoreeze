@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+  <div class="card">
+    <div class="card-header display-4 text-center">
+      <%= @card.target.body %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-center"><%= @card.front %></h5>
+      <div class="d-flex justify-content-between">
+        <%= link_to '1m <br/> Again'.html_safe, reviews_path(:card_id => @card.id, :user_id => @user.id, :value => "again"), method: :post, class: "mt-3 btn btn-danger btn-block" %>
+        <%= link_to '10m <br/> Good'.html_safe, reviews_path(:card_id => @card.id, :user_id => @user.id, :value => "good"), method: :post, class: "mt-3 btn btn-success btn-block" %>
+        <%= link_to '4d <br/> Easy'.html_safe, reviews_path(:card_id => @card.id, :user_id => @user.id, :value => "easy"), method: :post, class: "mt-3 btn btn-primary btn-block" %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Front:</strong>
-  <%= @card.front %>
-</p>
-
-<p>
-  <strong>Back:</strong>
-  <%= @card.back %>
-</p>
-
-<p>
-  <strong>Deck:</strong>
-  <%= @card.deck_id %>
-</p>
-
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
+<div>
+  <%= link_to 'Return to Assignment', assignment_path(@assignment, :user_id => @user.id), class: "mt-3 btn btn-secondary" %>
+</div>
+<div>
+  <%= link_to 'Return to Deck', deck_path(@card.deck, :assignment_id => @card.deck.assignment, :user_id => @user.id), class: "mt-3 btn btn-info" %>
+</div>
