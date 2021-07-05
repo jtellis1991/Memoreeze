@@ -186,6 +186,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kramdown (2.3.1)
+      rexml
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -403,6 +405,7 @@ DEPENDENCIES
   graphiti (~> 1.2)
   ims-lti (~> 1.1.8)
   jbuilder (~> 2.7)
+  kramdown
   listen (~> 3.3)
   pg (~> 1.1)
   pry-rails
