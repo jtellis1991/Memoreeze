@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LtiController < ApplicationController
-  after_action :allow_iframe, only: [:launch]
+  # after_action :allow_iframe, only: [:launch]
 
   def launch
     # If set, then hide the header and footer
