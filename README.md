@@ -7,4 +7,7 @@ Memoreeze is an SRS app that uses IMS LTI to provide instructors the ability to 
 Time Start July 5, 1:40pm
 Time End July 5, 4:40pm 
 
+Time Start July 7, 6:58 pm
+
+
 end
