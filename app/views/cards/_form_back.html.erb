@@ -14,8 +14,10 @@
 
     <%= form.hidden_field :card_id %>
 
-      <%= form.label :back %>
-      <%= form.number_field :back %>
+        <%= form.label :back, class: "sr-only" %>
+        <%= form.text_area :back, class: "form-control", placeholder: "Back Text" %>
+
+    <%= form.submit "Update Back Text", class: "btn btn-outline-secondary btn-block" %>
 
   <% end %>
 </div>

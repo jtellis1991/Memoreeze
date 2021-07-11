@@ -1,0 +1,11 @@
+var added_card = $("<%= j(render 'cards/card', card: @card) %>");
+
+added_card.hide();
+
+$("#<%= dom_id(Card.second_to_last) %>").before(added_card);
+
+added_card.slideDown();
+
+$("#card_target").val("");
+$("#card_front").val("");
+$("#card_back").val("");

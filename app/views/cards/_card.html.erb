@@ -1,0 +1,36 @@
+<tr id="<%= dom_id(card) %>" class="border text-center">
+  <td class="col-3">
+    <div id="<%= dom_id(card) %>_target_body">
+      <%= link_to "cards/#{card.id}/target_body/edit", class: "text-dark", remote: true do %>
+        <p>
+          <%= markdown(card.target.body) %>
+        </p>
+      <% end %>
+    </div>
+  </td>
+  <td class="col-4">
+    <div id="<%= dom_id(card) %>_front">
+      <%= link_to "cards/#{card.id}/front/edit", class: "text-dark", remote: true do %>
+        <p>
+          <%= markdown(card.front) %>
+        </p>
+      <% end %>
+    </div>
+  </td>
+  <td class="col-4">
+    <div id="<%= dom_id(card) %>_back">
+      <p>
+        <%= link_to "cards/#{card.id}/back/edit", class: "text-dark", remote: true do %>
+          <%= markdown(card.back) %>
+      <p>    
+      <% end %>
+    </div>
+  </td>
+  <td class="col-2">
+    <div id="<%= dom_id(card) %>_delete">
+      <%= link_to card, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-lg text-muted", remote: true do%>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

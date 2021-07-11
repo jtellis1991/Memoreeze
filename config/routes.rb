@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 
   get ":cards/:id/front/edit" => "cards#edit_front"
   get ":cards/:id/back/edit" => "cards#edit_back"
+  get ":cards/:id/target_body/edit" => "cards#edit_target_body"
 end

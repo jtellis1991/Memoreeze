@@ -1,45 +1,31 @@
-<h1>Cards in <%=@assignment.decks.first.name %></h1>
 
-<table class="table table-striped">
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Cards in <%=@assignment.decks.first.name %></h1>
+  <%= link_to 'Return to Assignment', assignment_path(@assignment, :user_id => @user.id), class: "mt-3 btn btn-secondary btn-lg mb-3" %>
+</div>
+
+<table class="table table-striped text-center">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Target</th>
       <th scope="col">Front</th>
       <th scope="col">Back</th>
       <th></th>
     </tr>
   </thead>
+  
+  <tbody class="table-active text-center">
+    <tr>
+      <%= render 'form', card: @deck.cards.build %>
+    </tr>
+  </tbody>
 
   <tbody>
-    <% @cards.each_with_index do |card, index| %>
-      <tr>
-        <td class="col-1"><%= index+1 %></td>
-        <td class="col-3">
-          <%= markdown(card.target.body) %>
-        </td>
-        <td class="col-4">
-          <div id="<%= dom_id(card) %>_front">
-            <%= link_to "cards/#{card.id}/front/edit", remote: true do %>
-              <p>
-                <%= markdown(card.front) %>
-              </p>
-            <% end %>
-          </div>
-        </td>
-        <td class="col-4">
-          <div id="<%= dom_id(card) %>_back">
-            <%= link_to "cards/#{card.id}/back/edit", remote: true do %>
-              <%= markdown(card.back) %>
-            <% end %>
-          </div>
-        </td>
-        <td class="col-2"><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger" %></td>
-      </tr>
+    <% @cards.order(:id => :desc).each do |card| %>
+      <%= render 'card', card: card %>
     <% end %>
   </tbody>
+  
 </table>
 
-  <%= render 'form', card: @deck.cards.build %>
 
-<%= link_to 'Return to Assignment', assignment_path(@assignment, :user_id => @user.id), class: "mt-3 btn btn-secondary" %>

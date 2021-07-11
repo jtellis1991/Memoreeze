@@ -1,0 +1,3 @@
+$("#<%= dom_id(@card) %>_target_body_form").replaceWith("<%= j(render("cards/target_body", card: @card))%>")
+$("#<%= dom_id(@card) %>_front_form").replaceWith("<%= j(render("cards/front", card: @card))%>")
+$("#<%= dom_id(@card) %>_back_form").replaceWith("<%= j(render("cards/back", card: @card))%>")
