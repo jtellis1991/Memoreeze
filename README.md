@@ -23,7 +23,13 @@ paused at 5:57 pm
 resumed at 6:27 pm
 paused at 6:38 pm
 resumed at 6:56 pm
-paused at 7:27 pm
+Ended at 7:27 pm
+
+Time Start August 9, 8:23 pm
+pause at 8:35 pm
+
+Time Start August 10, 10:00 am
+pause at 12:15 (working on getting canvas working)
 
 
 end

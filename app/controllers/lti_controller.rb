@@ -69,7 +69,7 @@ class LtiController < ApplicationController
     redirect_to @@launch_params[:launch_presentation_return_url]
   end
 
-  def allow_iframe
-    response.headers.except! 'X-Frame-Options'
-  end
+  # def allow_iframe
+  #   response.headers.except! 'X-Frame-Options'
+  # end
 end
