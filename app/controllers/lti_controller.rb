@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class LtiController < ApplicationController
-  # after_action :allow_iframe, only: [:launch]
+  skip_before_action :verify_authenticity_token, only: :launch # for lti integration
+  after_action :allow_iframe, only: [:launch]
 
   def launch
     # If set, then hide the header and footer
@@ -69,7 +70,7 @@ class LtiController < ApplicationController
     redirect_to @@launch_params[:launch_presentation_return_url]
   end
 
-  # def allow_iframe
-  #   response.headers.except! 'X-Frame-Options'
-  # end
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
 end

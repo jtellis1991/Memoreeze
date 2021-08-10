@@ -30,6 +30,7 @@ pause at 8:35 pm
 
 Time Start August 10, 10:00 am
 pause at 12:15 (working on getting canvas working)
+resume at 12:54 pm
 
 
 end
