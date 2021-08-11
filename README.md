@@ -35,5 +35,7 @@ pause at 3:30 pm
 resume at 4:35 pm
 pause at 5:15 pm
 
+Time start August 11, 4: 15 pm
+(worked on domain modeling, then updating the models)
 
 end
