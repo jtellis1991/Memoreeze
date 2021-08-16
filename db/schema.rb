@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "course_id"
+    t.integer "user_id"
     t.string "resource_link_id"
     t.string "resource_link_title"
     t.integer "deck_id"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "tool_consumer_id"
+    t.integer "user_id"
     t.string "context_id"
     t.string "context_title"
     t.datetime "created_at", precision: 6, null: false

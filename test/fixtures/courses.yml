@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  tool_consumer_id :integer
+#  user_id          :integer
 #  context_id       :string
 #  context_title    :string
 #  created_at       :datetime         not null

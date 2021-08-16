@@ -1,7 +1,0 @@
-<div id="<%= dom_id(card) %>_front">
-  <%= link_to "cards/#{card.id}/front/edit", class: "text-dark", remote: true do %>
-    <p>
-      <%= markdown(card.front) %>
-    </p>
-  <% end %>
-</div>

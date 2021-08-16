@@ -11,7 +11,11 @@ class DecksController < ApplicationController
 
   # GET /decks/1 or /decks/1.json
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
+
+    if !@deck.assignment.nil?
+      @assignment = Assignment.find(@deck.assignment_id)
+    end
     
     counter = 0;
     @user.reviews.each do |review|
@@ -23,14 +27,13 @@ class DecksController < ApplicationController
     end
     
     @new_cards = @deck.cards.count - counter
-    @assignment = Assignment.find(params[:assignment_id])      
   end
 
   # GET /decks/new
   def new
     @deck = Deck.new
-    @deck.assignment = Assignment.find_by_id(params[:assignment_id])
-    @deck.user = User.find_by_id(params[:user_id])
+    @assignment = current_assignment
+    @deck.user = current_user
   end
 
   # GET /decks/1/edit
@@ -43,7 +46,7 @@ class DecksController < ApplicationController
 
     respond_to do |format|
       if @deck.save
-        format.html { redirect_to cards_path(:assignment_id => @deck.assignment.id, :user_id => @deck.user_id), notice: "Deck was successfully created." }
+        format.html { redirect_to deck_cards_path(@deck), notice: "Deck was successfully created." }
         format.json { render :show, status: :created, location: @deck }
       else
         format.html { render :new, status: :unprocessable_entity }

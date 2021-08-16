@@ -8,7 +8,7 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/1 or /assignments/1.json
   def show
-    @user = User.find_by_id(params[:user_id])
+    @user = current_user
   end
 
   # GET /assignments/new

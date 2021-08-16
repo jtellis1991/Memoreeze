@@ -1,17 +1,17 @@
-<% if @assignment.decks.first.nil? && @user.role == "Instructor" %>
+<% if @assignment.decks.first.nil? && @user.roles == "Instructor" %>
 
   <div class="card">
     <div class="card-header display-4">
-      <%= @assignment.name %>
+      <%= @assignment.resource_link_title %>
     </div>
     <div class="card-body">
       <h5 class="card-title">This assignment has no deck associated with it.</h5>
       <p class="card-text">Choose an existing deck to associate with the assignment or create a new deck. </p>
-      <%= link_to 'Create New Deck', new_deck_path(:assignment_id => @assignment.id, :user_id => @user.id), class: "btn btn-primary" %>
+      <%= link_to 'Create New Deck', new_deck_path, class: "btn btn-primary" %>
     </div>
   </div>
 
-<% elsif @user.role == "Instructor" %>
+<% elsif @user.roles == "Instructor" %>
 
   <div class="card">
     <div class="card-header display-4">

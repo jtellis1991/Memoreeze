@@ -1,15 +1,11 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy edit_front edit_back edit_target_body]
-  #Added this because kept getting error with invalid authenticity token. 
-  #Suspect issue might be the use the app within the tool consumer window
-  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
+  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target]
+  before_action :set_deck
 
   # GET /cards or /cards.json
   def index
-    @cards = Assignment.find(params[:assignment_id]).decks.first.cards
-    @assignment = Assignment.find(params[:assignment_id])
-    @deck = @assignment.decks.first
-    @user = User.find(params[:user_id])
+    @cards = @deck.cards
+    @user = current_user
   end
 
   # GET /cards/1 or /cards/1.json
@@ -27,21 +23,21 @@ class CardsController < ApplicationController
   def edit
   end
 
-  def edit_target_body
+  def edit_target
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-  def edit_front
+  def edit_illustrative_test
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-  def edit_back
+  def edit_solution
     respond_to do |format|
       format.html
       format.js
@@ -51,10 +47,10 @@ class CardsController < ApplicationController
   # POST /cards or /cards.json
   def create
     @card = Card.new(card_params.except(:target))
-    @card.build_target(:body => params[:card][:target])
-    @card.front = !@card.front.empty? ? @card.front : "Add front text"
-    @card.back = !@card.back.empty? ? @card.back : "Add back text"
-    @card.target.body = !@card.target.body.empty? ? @card.target.body : "Add target"
+    @card.target.build(:target => params[:card][:target])
+    @card.illustrative_test = !@card.illustrative_test.empty? ? @card.illustrative_test : "Add illustrative_test text"
+    @card.solution = !@card.solution.empty? ? @card.solution : "Add solution text"
+    @card.target.target = !@card.target.target.empty? ? @card.target.target : "Add target"
 
     respond_to do |format|
       if @card.save
@@ -72,7 +68,7 @@ class CardsController < ApplicationController
   def update
     old_card = Card.find(params[:id])
     respond_to do |format|
-      if @card.update(card_params.except(:target)) || @card.update(:body => params[:card][:target])
+      if @card.update(card_params.except(:target)) || @card.target.update(:target => params[:card][:target])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -99,8 +95,12 @@ class CardsController < ApplicationController
       @card = Card.find(params[:id])
     end
 
+    def set_deck
+      @deck = Deck.find(params[:deck_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:front, :back, :deck_id, :target)
+      params.require(:card).permit(:illustrative_test, :solution, :deck_id, :target)
     end
 end

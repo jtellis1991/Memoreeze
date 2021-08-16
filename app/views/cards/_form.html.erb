@@ -1,4 +1,4 @@
-<%= form_with(model: card, local: false) do |form| %>
+<%= form_with(model: [deck, card], local: false) do |form| %>
   <% if card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
@@ -20,13 +20,13 @@
       </td>
 
       <td>
-        <%= form.label :front, class: "sr-only" %>
-        <%= form.text_area :front, class: "form-control", placeholder: "Front Text" %>
+        <%= form.label :illustrative_test, class: "sr-only" %>
+        <%= form.text_area :illustrative_test, class: "form-control", placeholder: "Illustrative Test Text" %>
       </td>
 
       <td>
-        <%= form.label :back, class: "sr-only" %>
-        <%= form.text_area :back, class: "form-control", placeholder: "Back Text"  %>
+        <%= form.label :solution, class: "sr-only" %>
+        <%= form.text_area :solution, class: "form-control", placeholder: "Solution Text"  %>
       </td>
 
 
