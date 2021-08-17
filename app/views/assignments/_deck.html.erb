@@ -1,0 +1,9 @@
+    <div id="<%= dom_id(assignment) %>_deck" >
+      <%= link_to "/courses/#{assignment.course.id}/assignments/#{assignment.id}/deck/edit", class: "link-primary text-decoration-none", remote: true do %>
+        <% if assignment.deck.blank? %>
+          No Deck Selected
+        <% else %>
+          <%= assignment.deck.name %>
+        <% end %>
+      <% end %>
+    <div>

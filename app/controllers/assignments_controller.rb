@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: %i[ show edit update destroy ]
+  before_action :set_assignment, only: %i[ show edit edit_deck update destroy ]
+  before_action :set_course
 
   # GET /assignments or /assignments.json
   def index
@@ -18,6 +19,14 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/1/edit
   def edit
+  end
+
+  def edit_deck
+    @user = current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /assignments or /assignments.json
@@ -41,6 +50,7 @@ class AssignmentsController < ApplicationController
       if @assignment.update(assignment_params)
         format.html { redirect_to @assignment, notice: "Assignment was successfully updated." }
         format.json { render :show, status: :ok, location: @assignment }
+        format.js 
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
@@ -63,8 +73,12 @@ class AssignmentsController < ApplicationController
       @assignment = Assignment.find(params[:id])
     end
 
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def assignment_params
-      params.require(:assignment).permit(:course_id)
+      params.require(:assignment).permit(:course_id, :deck_id)
     end
 end

@@ -1,0 +1,11 @@
+    <div id="<%= dom_id(assignment) %>_deck_link" >
+      <% if assignment.deck.blank? %>
+        <%= link_to deck_cards_path(assignment.deck, assignment.deck.cards),  class: "btn btn-link btn-lg text-muted" do%>
+          <i class="fas fa-folder-open" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <%= link_to deck_cards_path(assignment.deck, assignment.deck.cards),  class: "btn btn-link btn-lg text-muted" do%>
+          <i class="fas fa-folder-open" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </div>

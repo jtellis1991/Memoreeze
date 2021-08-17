@@ -12,8 +12,9 @@
 #  updated_at          :datetime         not null
 #
 class Assignment < ApplicationRecord
-  belongs_to(:course, { :required => false, :class_name => "Course", :foreign_key => "course_id" })
-  has_many(:decks, { :class_name => "Deck", :foreign_key => "assignment_id", :dependent => :destroy })
+  belongs_to :course,  required: false, class_name: "Course", foreign_key: :course_id 
+  belongs_to :deck, required: false, class_name: "Deck", foreign_key: :deck_id 
+
   has_many(:grades, { :class_name => "Grade", :foreign_key => "assignment_id", :dependent => :destroy })
 
 end

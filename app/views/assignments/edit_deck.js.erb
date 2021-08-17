@@ -1,0 +1,1 @@
+$("#<%= dom_id(@assignment) %>_deck").replaceWith("<%= j(render("assignments/form_deck", course: @course, assignment: @assignment, list_of_decks: @user.decks.all.order(:name => :asc).map{ |deck| [deck.name, deck.id]}))%>");

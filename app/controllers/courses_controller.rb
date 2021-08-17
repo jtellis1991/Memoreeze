@@ -8,6 +8,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
+    @user = current_user
+    @assignments = @course.assignments
   end
 
   # GET /courses/new

@@ -33,4 +33,8 @@ Rails.application.routes.draw do
   get "decks/:deck_id/:cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
   get "decks/:deck_id/:cards/:id/solution/edit" => "cards#edit_solution"
   get "decks/:deck_id/:cards/:id/target/edit" => "cards#edit_target"
+
+  get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
+
+  get 'dashboard', to: 'users#dashboard'
 end
