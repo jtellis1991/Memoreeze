@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "targets", force: :cascade do |t|
     t.string "target"
-    t.integer "card_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

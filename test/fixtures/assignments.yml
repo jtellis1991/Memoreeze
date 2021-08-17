@@ -4,6 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  course_id           :integer
+#  user_id             :integer
 #  resource_link_id    :string
 #  resource_link_title :string
 #  deck_id             :integer

@@ -50,7 +50,7 @@ class LtiController < ApplicationController
     session[:assignment_id] = @assignment.id
     
     # redirect the user to the assignment
-    redirect_to assignment_url(@assignment)
+    redirect_to decks_url
   end
 
   def submitscore

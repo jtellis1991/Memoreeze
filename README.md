@@ -50,5 +50,13 @@ resume at 2:05 pm
 pause at 2:15 pm
 resume at 2:27 pm
 pause at 5:10 pm
+resume at 5:36 pm
+pause at 5:59 pm
+reusume at 7:22 pm
+pause at 8:00 pm
+resume at 9:25 pm
+pause at 9:38 pm
+resume at 9:52 pm
+
 
 end

@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target]
   before_action :set_deck
+  before_action :no_blanks, only: %i[ create update ]
 
   # GET /cards or /cards.json
   def index
@@ -46,15 +47,13 @@ class CardsController < ApplicationController
 
   # POST /cards or /cards.json
   def create
-    @card = Card.new(card_params.except(:target))
-    @card.target.build(:target => params[:card][:target])
-    @card.illustrative_test = !@card.illustrative_test.empty? ? @card.illustrative_test : "Add illustrative_test text"
-    @card.solution = !@card.solution.empty? ? @card.solution : "Add solution text"
-    @card.target.target = !@card.target.target.empty? ? @card.target.target : "Add target"
 
+    @target = Target.create(:target => params[:card][:target])
+    @card = Card.new(card_params.except(:target).merge(:target_id => @target.id))
+    
     respond_to do |format|
       if @card.save
-        format.html { redirect_to cards_path(:assignment_id => @card.deck.assignment.id, :user_id => @card.deck.user_id), notice: "Card was successfully created." }
+        format.html { redirect_to deck_cards_path(@deck), notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
         format.js
       else
@@ -68,7 +67,7 @@ class CardsController < ApplicationController
   def update
     old_card = Card.find(params[:id])
     respond_to do |format|
-      if @card.update(card_params.except(:target)) || @card.target.update(:target => params[:card][:target])
+      if @card.update(card_params.except(:target)) && @card.target.update(:target => params[:card][:target])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -97,6 +96,18 @@ class CardsController < ApplicationController
 
     def set_deck
       @deck = Deck.find(params[:deck_id])
+    end
+
+    def no_blanks
+      if params[:card][:target].blank?
+        params[:card][:target] = "Add Target"
+      end
+      if params[:card][:illustrative_test].blank?
+        params[:card][:illustrative_test] = "Add Illustrative Test"
+      end
+      if params[:card][:solution].blank?
+        params[:card][:solution] = "Add Solution"
+      end
     end
 
     # Only allow a list of trusted parameters through.
