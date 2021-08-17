@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target]
+  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target edit_explanation]
   before_action :set_deck
   before_action :no_blanks, only: %i[ create update ]
 
@@ -45,10 +45,17 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit_explanation
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # POST /cards or /cards.json
   def create
 
-    @target = Target.create(:target => params[:card][:target])
+    @target = Target.create(:target => params[:card][:target], :explanation => params[:card][:explanation])
     @card = Card.new(card_params.except(:target).merge(:target_id => @target.id))
     
     respond_to do |format|
@@ -67,7 +74,7 @@ class CardsController < ApplicationController
   def update
     old_card = Card.find(params[:id])
     respond_to do |format|
-      if @card.update(card_params.except(:target)) && @card.target.update(:target => params[:card][:target])
+      if @card.update(card_params.except(:target)) && @card.target.update(target: params[:card][:target], explanation: params[:card][:explanation])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -107,6 +114,9 @@ class CardsController < ApplicationController
       end
       if params[:card][:solution].blank?
         params[:card][:solution] = "Add Solution"
+      end
+      if params[:card][:explanation].blank?
+        params[:card][:explanation] = "Add Explanation"
       end
     end
 

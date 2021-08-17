@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(card) %>" class="border text-center">
-  <td class="col-3">
+  <td class="col-2">
     <div id="<%= dom_id(card) %>_target">
       <%= link_to "cards/#{card.id}/target/edit", class: "text-dark", remote: true do %>
         <p>
@@ -8,7 +8,16 @@
       <% end %>
     </div>
   </td>
-  <td class="col-4">
+    <td class="col-3">
+    <div id="<%= dom_id(card) %>_explanation">
+      <p>
+        <%= link_to "cards/#{card.id}/explanation/edit", class: "text-dark", remote: true do %>
+          <%= markdown(card.target.explanation) %>
+      <p>    
+      <% end %>
+    </div>
+  </td>
+  <td class="col-3">
     <div id="<%= dom_id(card) %>_illustrative_test">
       <%= link_to "cards/#{card.id}/illustrative_test/edit", class: "text-dark", remote: true do %>
         <p>
@@ -17,7 +26,7 @@
       <% end %>
     </div>
   </td>
-  <td class="col-4">
+  <td class="col-3">
     <div id="<%= dom_id(card) %>_solution">
       <p>
         <%= link_to "cards/#{card.id}/solution/edit", class: "text-dark", remote: true do %>
@@ -26,7 +35,7 @@
       <% end %>
     </div>
   </td>
-  <td class="col-2">
+  <td class="col-1">
     <div id="<%= dom_id(card) %>_delete">
       <%= link_to deck_card_path(deck, card), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-lg text-muted", remote: true do%>
         <i class="fa fa-trash" aria-hidden="true"></i>

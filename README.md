@@ -58,5 +58,8 @@ resume at 9:25 pm
 pause at 9:38 pm
 resume at 9:52 pm
 
+Time Start Aug 17, 8:53 am
+pause at 10:46 am
+
 
 end

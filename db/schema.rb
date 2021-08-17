@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "targets", force: :cascade do |t|
     t.string "target"
+    t.text "explanation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

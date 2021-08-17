@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'lti/submitscore'
   post 'lti/submitscore'
 
+  get "decks/:deck_id/:cards/:id/explanation/edit" => "cards#edit_explanation"
   get "decks/:deck_id/:cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
   get "decks/:deck_id/:cards/:id/solution/edit" => "cards#edit_solution"
   get "decks/:deck_id/:cards/:id/target/edit" => "cards#edit_target"
