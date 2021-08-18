@@ -1,5 +1,5 @@
 <div id="<%= dom_id(deck)%>_name_form">
-  <%= form_with(url: "/decks/#{deck.id}/name", local: false) do |form| %>
+  <%= form_with(model: deck, url: "/decks/#{deck.id}/name", local: false) do |form| %>
     <% if deck.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
@@ -13,7 +13,7 @@
     <% end %>
 
         <%= form.label :name, class: "sr-only" %>
-        <%= form.text_area :name, class: "form-control", placeholder: "Name" %>
+        <%= form.text_area :name, class: "form-control", value: deck.name %>
 
     <%= form.submit "Update Name", class: "btn btn-outline-secondary btn-block" %>
 

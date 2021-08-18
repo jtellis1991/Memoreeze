@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
 
   get "decks/:id/name/edit", to: "decks#edit_name"
-  post "decks/:id/name", to: "decks#update_name"
+  patch "decks/:id/name", to: "decks#update_name"
 
   #Ajaxify links for editing fields in Cards
   get "decks/:deck_id/:cards/:id/explanation/edit" => "cards#edit_explanation"

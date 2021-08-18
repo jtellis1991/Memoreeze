@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target edit_explanation update_solution update_illustrative_test update_target update_explanation]
   before_action :set_deck
-  before_action :no_blanks, only: %i[ create update ]
+  before_action :no_blanks, only: %i[ create update_solution update_illustrative_test update_target update_explanation]
 
   # GET /cards or /cards.json
   def index

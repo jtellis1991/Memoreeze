@@ -3,6 +3,7 @@ class DecksController < ApplicationController
   #Added this because kept getting error with invalid authenticity token. 
   #Suspect issue might be the use the app within the tool consumer window
   skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
+  before_action :no_blanks, only: %i[create update_name]
 
   # GET /decks or /decks.json
   def index
@@ -78,7 +79,7 @@ class DecksController < ApplicationController
 
   def update_name
     respond_to do |format|
-      if @deck.update(name: params[:name])
+      if @deck.update(name: params[:deck][:name])
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }
         format.json { render :show, status: :ok, location: @deck }
         format.js
@@ -95,6 +96,7 @@ class DecksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to assignment_url(@deck.assignment, :user_id => @deck.user.id), notice: "Deck was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -102,6 +104,12 @@ class DecksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_deck
       @deck = Deck.find(params[:id])
+    end
+
+    def no_blanks
+      if params[:deck][:name].blank?
+        params[:deck][:name] = "Add Name"
+      end
     end
 
     # Only allow a list of trusted parameters through.
