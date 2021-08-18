@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: %i[ show edit update destroy ]
+  before_action :set_deck, only: %i[ show edit edit_name update update_name destroy ]
   #Added this because kept getting error with invalid authenticity token. 
   #Suspect issue might be the use the app within the tool consumer window
   skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
@@ -39,6 +39,9 @@ class DecksController < ApplicationController
 
   # GET /decks/1/edit
   def edit
+  end
+
+  def edit_name
   end
 
   # POST /decks or /decks.json

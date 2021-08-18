@@ -29,13 +29,17 @@ Rails.application.routes.draw do
   get 'lti/submitscore'
   post 'lti/submitscore'
 
+  get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
+
+  get "decks/:id/name/edit", to: "deck#edit_name"
+
+  #Ajaxify links for editing fields in Cards
   get "decks/:deck_id/:cards/:id/explanation/edit" => "cards#edit_explanation"
   get "decks/:deck_id/:cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
   get "decks/:deck_id/:cards/:id/solution/edit" => "cards#edit_solution"
   get "decks/:deck_id/:cards/:id/target/edit" => "cards#edit_target"
 
-  get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
-
+  #Ajaxify links for updating fields in Cards
   post "/decks/:deck_id/cards/:id/solution", to: 'cards#update_solution'
   post "/decks/:deck_id/cards/:id/explanation", to: 'cards#update_explanation'
   post "/decks/:deck_id/cards/:id/illustrative_test", to: 'cards#update_illustrative_test'
