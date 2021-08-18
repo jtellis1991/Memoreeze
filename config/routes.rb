@@ -35,16 +35,16 @@ Rails.application.routes.draw do
   patch "decks/:id/name", to: "decks#update_name"
 
   #Ajaxify links for editing fields in Cards
-  get "decks/:deck_id/:cards/:id/explanation/edit" => "cards#edit_explanation"
-  get "decks/:deck_id/:cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
-  get "decks/:deck_id/:cards/:id/solution/edit" => "cards#edit_solution"
-  get "decks/:deck_id/:cards/:id/target/edit" => "cards#edit_target"
+  get "decks/:deck_id/cards/:id/explanation/edit" => "cards#edit_explanation"
+  get "decks/:deck_id/cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
+  get "decks/:deck_id/cards/:id/solution/edit" => "cards#edit_solution"
+  get "decks/:deck_id/cards/:id/target/edit" => "cards#edit_target"
 
   #Ajaxify links for updating fields in Cards
-  post "/decks/:deck_id/cards/:id/solution", to: 'cards#update_solution'
-  post "/decks/:deck_id/cards/:id/explanation", to: 'cards#update_explanation'
-  post "/decks/:deck_id/cards/:id/illustrative_test", to: 'cards#update_illustrative_test'
-  post "/decks/:deck_id/cards/:id/target", to: 'cards#update_target'
+  patch "/decks/:deck_id/cards/:id/solution", to: 'cards#update_solution'
+  patch "/decks/:deck_id/cards/:id/explanation", to: 'cards#update_explanation'
+  patch "/decks/:deck_id/cards/:id/illustrative_test", to: 'cards#update_illustrative_test'
+  patch "/decks/:deck_id/cards/:id/target", to: 'cards#update_target'
 
   get 'dashboard', to: 'users#dashboard'
 end

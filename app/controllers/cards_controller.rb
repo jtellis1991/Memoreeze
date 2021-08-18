@@ -73,7 +73,7 @@ class CardsController < ApplicationController
   # PATCH/PUT /cards/1 or /cards/1.json
   def update_illustrative_test
     respond_to do |format|
-      if @card.update(illustrative_test: params[:illustrative_test])
+      if @card.update(illustrative_test: params[:card][:illustrative_test])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -86,7 +86,7 @@ class CardsController < ApplicationController
 
   def update_solution
     respond_to do |format|
-      if @card.update(solution: params[:solution])
+      if @card.update(solution: params[:card][:solution])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -99,7 +99,7 @@ class CardsController < ApplicationController
 
   def update_target
     respond_to do |format|
-      if @card.target.update(target: params[:target])
+      if @card.target.update(target: params[:card][:target])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
@@ -112,7 +112,7 @@ class CardsController < ApplicationController
 
   def update_explanation
     respond_to do |format|
-      if @card.target.update(explanation: params[:explanation])
+      if @card.target.update(explanation: params[:card][:explanation])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
