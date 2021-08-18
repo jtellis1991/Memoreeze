@@ -8,3 +8,6 @@ added_deck.slideDown();
 
 $('#newDeck').modal('hide')
 
+$("#<%= dom_id(@assignment) %>_deck").replaceWith("<%= j(render("assignments/deck", course: @course, assignment: @assignment))%>")
+$("#<%= dom_id(@assignment) %>_cards").replaceWith("<%= j(render("assignments/cards", course: @course, assignment: @assignment))%>")
+$("#<%= dom_id(@assignment) %>_deck_link").replaceWith("<%= j(render("assignments/deck_link", course: @course, assignment: @assignment))%>")

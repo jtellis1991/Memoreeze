@@ -54,8 +54,12 @@ class DecksController < ApplicationController
     @deck = Deck.new(deck_params)
 
     if !params[:deck][:assignment_id].blank?
-      @deck.assignments << Assignment.find(params[:deck][:assignment_id])
+      @assignment = Assignment.find(params[:deck][:assignment_id])
+      @course = @assignment.course
+      @deck.assignments << @assignment
     end
+
+   
 
     respond_to do |format|
       if @deck.save
