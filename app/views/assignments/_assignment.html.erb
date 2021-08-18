@@ -2,6 +2,9 @@
   <td class="col-1">
     <div id="<%= dom_id(assignment) %>_deck_link" >
       <% if assignment.deck.blank? %>
+        <div class="btn-lg text-muted">
+          <i class="fas fa-exclamation-triangle text-warning"></i>
+        </div>
       <% else %>
         <%= link_to deck_cards_path(assignment.deck),  class: "btn btn-link btn-lg text-secondary" do%>
           <i class="fas fa-folder-open" aria-hidden="true"></i>
