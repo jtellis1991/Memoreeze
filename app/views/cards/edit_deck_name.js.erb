@@ -1,1 +1,1 @@
-$("#<%= dom_id(@deck) %>_name").replaceWith("<%= j(render("cards/form_deck_name", deck: @deck, card: @card))%>");
+$("#<%= dom_id(@deck) %>_deck_name").replaceWith("<%= j(render("cards/form_deck_name", deck: @deck))%>");

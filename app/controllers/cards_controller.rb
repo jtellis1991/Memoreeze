@@ -132,7 +132,7 @@ class CardsController < ApplicationController
 
   def update_deck_name
     respond_to do |format|
-      if @card.deck.update(name: params[:card][:deck_name])
+      if @deck.update(name: params[:deck_name])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 

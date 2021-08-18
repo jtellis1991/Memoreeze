@@ -1,11 +1,11 @@
 <div id="<%= dom_id(deck)%>_deck_name_form">
-  <%= form_with(model: card, url: "/decks/#{deck.id}/deck_name", local: false) do |form| %>
-    <% if card.errors.any? %>
+  <%= form_with(url: "/decks/#{deck.id}/deck_name", method: :patch, local: false) do |form| %>
+    <% if deck.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+        <h2><%= pluralize(deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
 
         <ul>
-          <% card.errors.each do |error| %>
+          <% deck.errors.each do |error| %>
             <li><%= error.full_message %></li>
           <% end %>
         </ul>
@@ -13,9 +13,9 @@
     <% end %>
 
         <%= form.label :deck_name, class: "sr-only" %>
-        <%= form.text_field :deck_name, class: "form-control", value: card.deck.name %>
+        <%= form.text_field :deck_name, class: "form-control", value: deck.name %>
 
-  <%= form.submit "Update Target", class: "btn btn-outline-secondary btn-block" %>
+  <%= form.submit "Update Deck Name", class: "btn btn-outline-secondary btn-block" %>
 
   <% end %>
 </div>
