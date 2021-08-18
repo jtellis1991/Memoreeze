@@ -63,5 +63,15 @@ pause at 10:46 am
 resume at 11:21 am
 pause at 12:05 pm
 resume at 12:15 pm
+Missing hours: stop at 3:15
+resume at 5:44 pm
+pause at 6:12 pm
+resume at 6:20 pm
+stop at 7:17 pm 
+resume at 8:48 pm
+stop at 9:02 pm
+
+Time start Aug 18, 7:24 am
+
 
 end
