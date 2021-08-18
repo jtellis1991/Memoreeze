@@ -78,5 +78,6 @@ time paust 10:06 am
 resume at 11:53 am
 pause at 12:52 pm
 resume at 1:17 pm
+pause at 6:24 pm
 
 end
