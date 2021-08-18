@@ -57,18 +57,17 @@ class DecksController < ApplicationController
       @assignment = Assignment.find(params[:deck][:assignment_id])
       @course = @assignment.course
       @deck.assignments << @assignment
-    else
-      @assignment = Assignment.new
-      @course = Course.new
     end
    
 
     respond_to do |format|
-      if @deck.save
+      if @deck.save && !@assignment.blank?
         format.html { redirect_to deck_cards_path(@deck)}
         format.json { render :show, status: :created, location: @deck }
+        format.js {render :create_and_assign}
+      elsif @deck.save
         format.js
-      else
+      else        
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @deck.errors, status: :unprocessable_entity }
       end

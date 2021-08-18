@@ -6,12 +6,4 @@ $("#zerothDeck").after(added_deck);
 
 added_deck.slideDown();
 
-$('#newDeck').modal('hide');
-
-var a = $("#coursesShow");
-
-if(a){
-  $("#<%= dom_id(@assignment) %>_deck").replaceWith("<%= j(render("assignments/deck", course: @course, assignment: @assignment))%>")
-  $("#<%= dom_id(@assignment) %>_cards").replaceWith("<%= j(render("assignments/cards", course: @course, assignment: @assignment))%>")
-  $("#<%= dom_id(@assignment) %>_deck_link").replaceWith("<%= j(render("assignments/deck_link", course: @course, assignment: @assignment))%>")
-}
+$('#newDeck').modal('hide')
