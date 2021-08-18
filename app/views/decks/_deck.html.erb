@@ -19,7 +19,7 @@
     <% else %>
       <ul class="list-group">
         <% deck.assignments.each do |assignment| %>
-          <li class="list-group-item"><%= assignment.resource_link_title + " - " + assignment.course.context_title %>
+          <li class="list-group-item list-group-item-primary"><%= assignment.resource_link_title + " - " + assignment.course.context_title %>
         <% end %>
       </ul>
     <% end %>
