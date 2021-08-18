@@ -108,7 +108,7 @@ class DecksController < ApplicationController
 
     def no_blanks
       if params[:deck][:name].blank?
-        params[:deck][:name] = "Add Name"
+        params[:deck][:name] = "Deck No. #{current_user.decks.count + 1}"
       end
     end
 
