@@ -1,5 +1,6 @@
 <span id="<%= dom_id(deck)%>_deck_name_form">
-  <%= form_with(url: "/decks/#{deck.id}/deck_name", method: :patch, class: "form-inline", local: false) do |form| %>
+  <%= form_with(url: "/decks/#{deck.id}/deck_name", method: :patch, class: "", local: false) do |form| %>
+      
     <% if deck.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
@@ -12,12 +13,12 @@
       </div>
     <% end %>
 
-      <div class="form-group">
+      <div class="form-group mb-0">
         <%= form.label :deck_name, "Cards in", class: "h1 mb-2 mr-2" %>
         <%= form.text_field :deck_name, class: "h1 border-0", value: deck.name %>
       </div>
 
-  <%= form.submit "Update Deck Name", class: "btn btn-outline-secondary mb-2" %>
+  <%= form.submit "Update Deck Name", class: "btn btn-outline-secondary d-none"%>
 
   <% end %>
 </span>
