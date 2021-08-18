@@ -71,19 +71,6 @@ class CardsController < ApplicationController
   end
 
   # PATCH/PUT /cards/1 or /cards/1.json
-  def update
-    respond_to do |format|
-      if @card.update(card_params.except(:target)) && @card.target.update(target: params[:card][:target], explanation: params[:card][:explanation])
-        format.html { redirect_to @card, notice: "Card was successfully updated." }
-        format.json { render :show, status: :ok, location: @card }
-        format.js 
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def update_illustrative_test
     respond_to do |format|
       if @card.update(illustrative_test: params[:illustrative_test])

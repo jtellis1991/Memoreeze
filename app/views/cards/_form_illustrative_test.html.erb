@@ -1,5 +1,5 @@
 <div id="<%= dom_id(card)%>_illustrative_test_form">
-  <%= form_with(model: [deck, card], local: false) do |form| %>
+  <%= form_with(url: "/decks/#{deck.id}/cards/#{card.id}/illustrative_test", local: false) do |form| %>
     <% if card.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
@@ -11,8 +11,6 @@
         </ul>
       </div>
     <% end %>
-
-    <%= form.hidden_field :card_id %>
 
         <%= form.label :illustrative_test, class: "sr-only" %>
         <%= form.text_area :illustrative_test, class: "form-control", placeholder: "Illustrative Test Text" %>
