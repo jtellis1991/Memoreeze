@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   # skip_before_action :verify_authenticity_token, only: :launch
   # after_action :allow_iframe
-
+  before_action :set_user
   # def allow_iframe
   #   response.headers.except! 'X-Frame-Options'
   # end
@@ -21,4 +21,7 @@ class ApplicationController < ActionController::Base
     @course ||= session[:course_id] && Course.find_by(id: session[:course_id])
   end
 
+  def set_user
+    @user = current_user
+  end
 end
