@@ -35,12 +35,6 @@
       <th></th>
     </tr>
   </thead>
-  
-  <tbody class="table-active text-center">
-    <tr>
-      <%= render 'form', deck: @deck, card: @deck.cards.build %>
-    </tr>
-  </tbody>
 
   <tbody>
     <% @cards.order(:id => :desc).each do |card| %>

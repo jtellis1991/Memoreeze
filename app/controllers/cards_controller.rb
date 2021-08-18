@@ -56,7 +56,7 @@ class CardsController < ApplicationController
   def create
 
     @target = Target.create(:target => params[:card][:target], :explanation => params[:card][:explanation])
-    @card = Card.new(card_params.except(:target).merge(:target_id => @target.id))
+    @card = Card.new(card_params.except(:target).merge(target_id: @target.id, deck_id: params[:deck_id]))
     
     respond_to do |format|
       if @card.save
