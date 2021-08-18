@@ -131,6 +131,11 @@ class CardsController < ApplicationController
   end
 
   def update_deck_name
+
+    if params[:deck_name].blank?
+      params[:deck_name] = "Deck No. #{current_user.decks.count + 1}"
+    end
+
     respond_to do |format|
       if @deck.update(name: params[:deck_name])
         format.html { redirect_to @card, notice: "Card was successfully updated." }

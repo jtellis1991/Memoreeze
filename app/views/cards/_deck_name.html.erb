@@ -1,5 +1,5 @@
-  <h1 id="<%= dom_id(@deck)%>_deck_name">Cards in 
+  <h1 id="<%= dom_id(@deck)%>_deck_name">Cards in
     <%= link_to "/decks/#{@deck.id}/deck_name/edit", class: "text-dark text-decoration-none", remote: true do %>
-      <span><%= @deck.name %></span>
+      <%= @deck.name %>
     <% end %>
   </h1>
