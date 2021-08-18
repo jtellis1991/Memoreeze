@@ -57,8 +57,10 @@ class DecksController < ApplicationController
       @assignment = Assignment.find(params[:deck][:assignment_id])
       @course = @assignment.course
       @deck.assignments << @assignment
+    else
+      @assignment = Assignment.new
+      @course = Course.new
     end
-
    
 
     respond_to do |format|
