@@ -1,0 +1,12 @@
+var added_card = $("<%= j(render 'cards/card', deck: @deck, card: @card) %>");
+
+added_card.hide();
+
+$("#<%= dom_id(Card.second_to_last) %>").before(added_card);
+
+added_card.slideDown();
+
+$("#card_target").val("");
+$("#card_explanation").val("");
+$("#card_front").val("");
+$("#card_back").val("");

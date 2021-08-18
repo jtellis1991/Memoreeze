@@ -4,15 +4,21 @@ Rails.application.routes.draw do
   resources :targets
   resources :review_settings
   resources :results
-  resources :decks
   resources :reviews
-  resources :cards
   resources :tool_consumers
   resources :grades
-  resources :assignments
   resources :enrollments
-  resources :courses
   resources :users
+
+  resources :decks do
+    resources :cards
+  end
+
+  resources :courses do
+    resources :assignments
+  end
+
+  
   
   #forced route to default to xml. Thanks Jelani!
   get 'config.xml', to: 'static#xml_config', :defaults => { :format => 'xml'}
@@ -23,6 +29,12 @@ Rails.application.routes.draw do
   get 'lti/submitscore'
   post 'lti/submitscore'
 
-  get ":cards/:id/front/edit" => "cards#edit_front"
-  get ":cards/:id/back/edit" => "cards#edit_back"
+  get "decks/:deck_id/:cards/:id/explanation/edit" => "cards#edit_explanation"
+  get "decks/:deck_id/:cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
+  get "decks/:deck_id/:cards/:id/solution/edit" => "cards#edit_solution"
+  get "decks/:deck_id/:cards/:id/target/edit" => "cards#edit_target"
+
+  get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
+
+  get 'dashboard', to: 'users#dashboard'
 end

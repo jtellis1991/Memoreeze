@@ -1,0 +1,4 @@
+$("#<%= dom_id(@card) %>_target_form").replaceWith("<%= j(render("cards/target", card: @card))%>")
+$("#<%= dom_id(@card) %>_explanation_form").replaceWith("<%= j(render("cards/explanation", card: @card))%>")
+$("#<%= dom_id(@card) %>_illustrative_test_form").replaceWith("<%= j(render("cards/illustrative_test", card: @card))%>")
+$("#<%= dom_id(@card) %>_solution_form").replaceWith("<%= j(render("cards/solution", card: @card))%>")

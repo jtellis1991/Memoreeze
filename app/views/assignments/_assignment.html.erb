@@ -1,0 +1,38 @@
+<tr id="<%= dom_id(assignment) %>" class="border text-center">
+  <td class="col-1">
+    <div id="<%= dom_id(assignment) %>_deck_link" >
+      <% if assignment.deck.blank? %>
+        <%= link_to deck_cards_path(assignment.deck, assignment.deck.cards),  class: "btn btn-link btn-lg text-muted" do%>
+          <i class="fas fa-folder-open" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <%= link_to deck_cards_path(assignment.deck, assignment.deck.cards),  class: "btn btn-link btn-lg text-muted" do%>
+          <i class="fas fa-folder-open" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td class="col-4 align-middle">
+      <%= assignment.resource_link_title %>
+  </td>
+  <td class="col-5 align-middle">
+    <div id="<%= dom_id(assignment) %>_deck" >
+      <%= link_to "/courses/#{assignment.course.id}/assignments/#{assignment.id}/deck/edit", class: "link-primary text-decoration-none", remote: true do %>
+        <% if assignment.deck.blank? %>
+          No Deck Selected
+        <% else %>
+          <%= assignment.deck.name %>
+        <% end %>
+      <% end %>
+    <div>
+  </td>
+  <td class="col-2 align-middle">
+    <div id="<%= dom_id(assignment) %>_cards" >
+      <% if assignment.deck.blank? %>
+        N/A
+      <% else %>
+        <%= assignment.deck.cards.count %>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -10,30 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_220739) do
+ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
     t.integer "course_id"
+    t.integer "user_id"
     t.string "resource_link_id"
-    t.string "name"
+    t.string "resource_link_title"
+    t.integer "deck_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cards", force: :cascade do |t|
-    t.text "front"
-    t.text "back"
+    t.text "illustrative_test"
+    t.text "solution"
     t.integer "deck_id"
+    t.integer "target_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "courses", force: :cascade do |t|
     t.integer "tool_consumer_id"
+    t.integer "user_id"
     t.string "context_id"
+    t.string "context_title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,6 +54,13 @@ ActiveRecord::Schema.define(version: 2021_05_31_220739) do
   create_table "enrollments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "explanations", force: :cascade do |t|
+    t.text "explanation"
+    t.integer "target_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -91,8 +103,8 @@ ActiveRecord::Schema.define(version: 2021_05_31_220739) do
   end
 
   create_table "targets", force: :cascade do |t|
-    t.string "body"
-    t.integer "card_id"
+    t.string "target"
+    t.text "explanation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -100,14 +112,16 @@ ActiveRecord::Schema.define(version: 2021_05_31_220739) do
   create_table "tool_consumers", force: :cascade do |t|
     t.string "guid"
     t.string "name"
+    t.string "product_family"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "role"
+    t.string "roles"
     t.integer "tool_consumer_id"
     t.string "tc_user_id"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

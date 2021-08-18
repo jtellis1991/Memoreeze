@@ -9,9 +9,6 @@ class StaticController < ApplicationController
           launch_url: launch_url,
         )
 
-      tool_config.description = "This LTI Tool grades"\
-      " students use of SRS decks."
-
       render xml: tool_config.to_xml
       end
     end

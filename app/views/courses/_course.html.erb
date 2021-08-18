@@ -1,0 +1,15 @@
+<tr id="<%= dom_id(course) %>" class="border text-center">
+  <td class="col-1">
+    <div id="<%= dom_id(course) %>_show">
+      <%= link_to course_path(course),  class: "btn btn-link btn-lg text-muted" do%>
+        <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </td>
+  <td class="col-5 align-middle">
+      <%= course.context_title %>
+  </td>
+  <td class="col-6 align-middle">
+      <%= course.assignments.count %>
+  </td>
+</tr>

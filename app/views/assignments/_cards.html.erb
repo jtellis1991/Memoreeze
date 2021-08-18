@@ -1,0 +1,7 @@
+    <div id="<%= dom_id(assignment) %>_cards" >
+      <% if assignment.deck.blank? %>
+        N/A
+      <% else %>
+        <%= assignment.deck.cards.count %>
+      <% end %>
+    </div>

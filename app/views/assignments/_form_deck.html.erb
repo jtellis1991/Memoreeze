@@ -1,0 +1,18 @@
+<div id="<%= dom_id(assignment)%>_deck_form">  
+  <%= form_with(model: [course, assignment], local: false) do |form| %>
+    <% if assignment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+        <ul>
+          <% assignment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form.hidden_field :assignment_id %>
+      <%= form.label :deck_id, class: "sr-only" %>
+      <%= form.select :deck_id, list_of_decks, {}, onchange: "Rails.fire(this.form, 'submit')" %>
+  <% end %>
+</div>

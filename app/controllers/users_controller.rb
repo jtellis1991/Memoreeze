@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def dashboard
+    @user = current_user
+    @courses = @user.courses
+  end
+
   # GET /users/new
   def new
     @user = User.new

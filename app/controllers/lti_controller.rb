@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class LtiController < ApplicationController
-  # after_action :allow_iframe, only: [:launch]
+  skip_before_action :verify_authenticity_token, only: :launch # for lti integration
+  after_action :allow_iframe, only: [:launch]
 
   def launch
     # If set, then hide the header and footer
@@ -36,13 +37,20 @@ class LtiController < ApplicationController
     # Look up User, Course, and Assignment for the Tool Consumer, or create if not in database
     # Note: normally this would be logging in user with authentication, but the LTI-LMS essentially does this
     # this means we can immediately take these params and direct someone to the study session
-    @tool_consumer = ToolConsumer.find_or_create_by(guid: params[:tool_consumer_instance_guid])
-    @user = User.create_with(tool_consumer_id: @tool_consumer.id, role: params[:roles]).find_or_create_by(tc_user_id: params[:user_id])
-    @course = Course.create_with(tool_consumer_id: @tool_consumer.id).find_or_create_by(context_id: params[:context_id])
-    @assignment = Assignment.create_with(course_id: @course.id, name: params[:resource_link_title]).find_or_create_by(resource_link_id: params[:resource_link_id])
+    @tool_consumer = ToolConsumer.create_with(product_family: params[:tool_consumer_info_product_family_code], name: params[:tool_consumer_instance_name]).find_or_create_by(guid: params[:tool_consumer_instance_guid])
+
+    @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
+
+    @course = Course.create_with(tool_consumer_id: @tool_consumer.id, context_title: params[:context_title], user_id: @user.id).find_or_create_by(context_id: params[:context_id])
+
+    @assignment = Assignment.create_with(course_id: @course.id, resource_link_title: params[:resource_link_title], user_id: @user.id).find_or_create_by(resource_link_id: params[:resource_link_id])
+
+    session[:user_id] = @user.id
+    session[:course_id] = @course.id
+    session[:assignment_id] = @assignment.id
     
     # redirect the user to the assignment
-    redirect_to assignment_url(@assignment, :user_id => @user.id)
+    redirect_to decks_url
   end
 
   def submitscore

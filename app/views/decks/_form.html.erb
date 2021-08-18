@@ -11,17 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control", placeholder: "Enter name of new deck" %>
+<%= form.hidden_field :user_id, value: @user.id %> 
+
+  <div class="col">
+
+    <div>
+      <%= form.label :name, class: "sr-only" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Enter name of new deck" %>
+    </div>
+
+    <div class="mt-3 ">
+      <%= form.label :assignment_id, "Select an Assignment for this Deck?" %>
+    </div>
+    <div>
+      <%= collection_select(:deck, :assignment_id, @user.floating_assignments, :id, :resource_link_title, prompt: "No Assignment Selected") %>
+    </div>
+
+    <div class="actions text-right">
+      <%= form.submit class: "btn btn-primary btn-lg mt-3" %>
+    </div>
   </div>
 
-
-    <%= form.hidden_field :user_id %>
-    <%= form.hidden_field :assignment_id %>
-
-
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary btn-lg mt-3" %>
-  </div>
 <% end %>

@@ -1,15 +1,12 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy ]
-  #Added this because kept getting error with invalid authenticity token. 
-  #Suspect issue might be the use the app within the tool consumer window
-  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
+  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target edit_explanation]
+  before_action :set_deck
+  before_action :no_blanks, only: %i[ create update ]
 
   # GET /cards or /cards.json
   def index
-    @cards = Assignment.find(params[:assignment_id]).decks.first.cards
-    @assignment = Assignment.find(params[:assignment_id])
-    @deck = @assignment.decks.first
-    @user = User.find(params[:user_id])
+    @cards = @deck.cards
+    @user = current_user
   end
 
   # GET /cards/1 or /cards/1.json
@@ -27,14 +24,28 @@ class CardsController < ApplicationController
   def edit
   end
 
-  def edit_front
+  def edit_target
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-  def edit_back
+  def edit_illustrative_test
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit_solution
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit_explanation
     respond_to do |format|
       format.html
       format.js
@@ -43,13 +54,15 @@ class CardsController < ApplicationController
 
   # POST /cards or /cards.json
   def create
-    @card = Card.new(card_params.except(:target))
-    @card.build_target(:body => params[:card][:target])
 
+    @target = Target.create(:target => params[:card][:target], :explanation => params[:card][:explanation])
+    @card = Card.new(card_params.except(:target).merge(:target_id => @target.id))
+    
     respond_to do |format|
       if @card.save
-        format.html { redirect_to cards_path(:assignment_id => @card.deck.assignment.id, :user_id => @card.deck.user_id), notice: "Card was successfully created." }
+        format.html { redirect_to deck_cards_path(@deck), notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @card.errors, status: :unprocessable_entity }
@@ -59,10 +72,12 @@ class CardsController < ApplicationController
 
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
+    old_card = Card.find(params[:id])
     respond_to do |format|
-      if @card.update(card_params)
+      if @card.update(card_params.except(:target)) && @card.target.update(target: params[:card][:target], explanation: params[:card][:explanation])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
+        format.js 
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @card.errors, status: :unprocessable_entity }
@@ -76,6 +91,7 @@ class CardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cards_path(:assignment_id => @card.deck.assignment.id, :user_id => @card.deck.user_id), notice: "Card was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -85,8 +101,27 @@ class CardsController < ApplicationController
       @card = Card.find(params[:id])
     end
 
+    def set_deck
+      @deck = Deck.find(params[:deck_id])
+    end
+
+    def no_blanks
+      if params[:card][:target].blank?
+        params[:card][:target] = "Add Target"
+      end
+      if params[:card][:illustrative_test].blank?
+        params[:card][:illustrative_test] = "Add Illustrative Test"
+      end
+      if params[:card][:solution].blank?
+        params[:card][:solution] = "Add Solution"
+      end
+      if params[:card][:explanation].blank?
+        params[:card][:explanation] = "Add Explanation"
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:front, :back, :deck_id, :target)
+      params.require(:card).permit(:illustrative_test, :solution, :deck_id, :target)
     end
 end

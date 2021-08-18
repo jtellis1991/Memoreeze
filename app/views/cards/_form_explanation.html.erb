@@ -1,5 +1,6 @@
-<div id="<%= dom_id(card)%>_front_form">
-  <%= form_with(model: card, local: false) do |form| %>
+
+<div id="<%= dom_id(card)%>_explanation_form">
+  <%= form_with(model: [deck, card], local: false) do |form| %>
     <% if card.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
@@ -14,8 +15,10 @@
 
     <%= form.hidden_field :card_id %>
 
-      <%= form.label :front %>
-      <%= form.number_field :front %>
+        <%= form.label :explanation, class: "sr-only" %>
+        <%= form.text_area :explanation, class: "form-control", value: card.target.explanation %>
+
+  <%= form.submit "Update Explanation", class: "btn btn-outline-secondary btn-block" %>
 
   <% end %>
 </div>

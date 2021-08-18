@@ -1,31 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Your decks</h1>
+</div>
 
-<h1>Decks</h1>
-
-<table>
+<table class="table table-striped text-center">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th>Assignment</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th scope="col">Name</th>
+      <th scope="col">Assignment</th>
+      <th></th>
     </tr>
   </thead>
-
+  
   <tbody>
-    <% @decks.each do |deck| %>
-      <tr>
-        <td><%= deck.name %></td>
-        <td><%= deck.user_id %></td>
-        <td><%= deck.assignment_id %></td>
-        <td><%= link_to 'Show', deck %></td>
-        <td><%= link_to 'Edit', edit_deck_path(deck) %></td>
-        <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @decks.order(:id => :desc).each do |deck| %>
+      <%= render 'deck', deck: deck %>
     <% end %>
   </tbody>
+
 </table>
 
-<br>
 
-<%= link_to 'New Deck', new_deck_path %>

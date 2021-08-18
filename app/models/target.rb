@@ -2,13 +2,15 @@
 #
 # Table name: targets
 #
-#  id         :bigint           not null, primary key
-#  body       :string
-#  card_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  target      :string
+#  explanation :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 class Target < ApplicationRecord
-  belongs_to(:card, { :required => false, :class_name => "Card", :foreign_key => "card_id" })
-
+  has_many :cards, :class_name => "Card", :foreign_key => "target_id", :dependent => :destroy 
+  
+  validates :target, presence: true
+  
 end

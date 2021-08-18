@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Your courses</h1>
+</div>
+
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Course</th>
+      <th scope="col">Number of Assignments</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @courses.order(:id => :desc).each do |course| %>
+      <%= render '/courses/course', course: course %>
+    <% end %>
+  </tbody>
+
+</table>
