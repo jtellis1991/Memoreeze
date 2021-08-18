@@ -42,6 +42,10 @@ class DecksController < ApplicationController
   end
 
   def edit_name
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /decks or /decks.json
@@ -65,6 +69,19 @@ class DecksController < ApplicationController
       if @deck.update(deck_params)
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }
         format.json { render :show, status: :ok, location: @deck }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @deck.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_name
+    respond_to do |format|
+      if @deck.update(name: params[:name])
+        format.html { redirect_to @deck, notice: "Deck was successfully updated." }
+        format.json { render :show, status: :ok, location: @deck }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @deck.errors, status: :unprocessable_entity }
