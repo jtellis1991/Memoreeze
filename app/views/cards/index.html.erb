@@ -37,9 +37,14 @@
   </thead>
 
   <tbody>
-    <% @cards.order(:id => :desc).each do |card| %>
-      <%= render 'card', deck: @deck, card: card %>
-    <% end %>
+    <% if @cards.blank? %>
+      <tr id="firstCard">
+      </tr>
+    <% else %>
+      <% @cards.order(:id => :desc).each do |card| %>
+        <%= render 'card', deck: @deck, card: card %>
+      <% end %>
+    <% end %>  
   </tbody>
 
 </table>
