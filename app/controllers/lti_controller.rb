@@ -38,19 +38,23 @@ class LtiController < ApplicationController
     # Note: normally this would be logging in user with authentication, but the LTI-LMS essentially does this
     # this means we can immediately take these params and direct someone to the study session
     @tool_consumer = ToolConsumer.create_with(product_family: params[:tool_consumer_info_product_family_code], name: params[:tool_consumer_instance_name]).find_or_create_by(guid: params[:tool_consumer_instance_guid])
+    @tool_consumer.update(product_family: params[:tool_consumer_info_product_family_code], name: params[:tool_consumer_instance_name])
 
     @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
+    @user.update(roles: params[:roles], name: params[:lis_person_name_full])
 
     @course = Course.create_with(tool_consumer_id: @tool_consumer.id, context_title: params[:context_title], user_id: @user.id).find_or_create_by(context_id: params[:context_id])
+    @course.update(context_title: params[:context_title])
 
     @assignment = Assignment.create_with(course_id: @course.id, resource_link_title: params[:resource_link_title], user_id: @user.id).find_or_create_by(resource_link_id: params[:resource_link_id])
+    @assignment.update(resource_link_title: params[:resource_link_title])
 
     session[:user_id] = @user.id
     session[:course_id] = @course.id
     session[:assignment_id] = @assignment.id
     
     # redirect the user to the assignment
-    redirect_to decks_url
+    redirect_to dashboard_url
   end
 
   def submitscore
