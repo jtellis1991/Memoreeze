@@ -76,5 +76,7 @@ time stop 7:41 am
 time start 7:45 am
 time paust 10:06 am
 resume at 11:53 am
+pause at 12:52 pm
+resume at 1:17 pm
 
 end

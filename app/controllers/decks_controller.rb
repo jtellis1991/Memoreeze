@@ -114,6 +114,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:name, :user_id, :assignment_id)
+      params.require(:deck).permit(:name, :user_id)
     end
 end

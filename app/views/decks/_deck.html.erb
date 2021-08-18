@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(deck) %>" class="border text-center">
-  <td class="col-1">
+  <td class="col-1 align-middle">
     <div id="<%= dom_id(deck) %>_show">
       <%= link_to deck_cards_path(deck),  class: "btn btn-link btn-lg text-secondary" do%>
         <i class="fas fa-folder-open" aria-hidden="true"></i>
@@ -13,18 +13,19 @@
       <% end %>
     </div>
   </td>
-    <td class="col-6 align-middle">
-    <div id="<%= dom_id(deck) %>_explanation">
-        <%= link_to "decks/#{deck.id}/assignment/edit", class: "link-primary text-decoration-none", remote: true do %>
-          <% if deck.assignment.blank? %>
-            No Assignment Set
-          <% else %>
-            <%= deck.assignment.course.context_title %>
-          <% end %>
-      <% end %>
-    </div>
+  <td class="col-6 align-middle">
+    <% if deck.assignments.blank? %>
+        No assignment uses this deck.
+    <% else %>
+      <ul class="list-group">
+        <% deck.assignments.each do |assignment| %>
+          <li class="list-group-item"><%= assignment.resource_link_title + " - " + assignment.course.context_title %>
+        <% end %>
+      </ul>
+    <% end %>
   </td>
-  <td class="col-1">
+
+  <td class="col-1 align-middle">
     <div id="<%= dom_id(deck) %>_delete">
       <%= link_to deck_path(deck), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-lg text-secondary", remote: true do%>
         <i class="fa fa-trash" aria-hidden="true"></i>
