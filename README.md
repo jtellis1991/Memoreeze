@@ -72,6 +72,8 @@ resume at 8:48 pm
 stop at 9:02 pm
 
 Time start Aug 18, 7:24 am
+time stop 7:41 am
+time start 7:45 am
 
 
 end
