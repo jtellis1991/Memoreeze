@@ -16,3 +16,9 @@
       <%= form.select :deck_id, @user.decks.all.order(:name => :asc).map{ |deck| [deck.name, deck.id]}, {:include_blank => true}, onchange: "Rails.fire(this.form, 'submit')" %>
   <% end %>
 </div>
+
+<script>
+document.getElementById("assignment_deck_id").onclick = function () {
+  this.value = null;
+};
+</script>
