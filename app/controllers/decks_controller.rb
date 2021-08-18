@@ -52,6 +52,9 @@ class DecksController < ApplicationController
   # POST /decks or /decks.json
   def create
     @deck = Deck.new(deck_params)
+    if !params[:deck][:assignment_id].blank?
+      @deck.assignments << Assignment.find(params[:deck][:assignment_id])
+    end
 
     respond_to do |format|
       if @deck.save

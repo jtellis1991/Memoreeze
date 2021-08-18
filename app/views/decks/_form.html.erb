@@ -20,7 +20,11 @@
 
     <div class="form-group font-weight-bold mb-4">
       <%= form.label :assignment_id, "Select an Assignment for this Deck?" %>
-      <%= form.select :assignment_id, @user.floating_assignments.order(:id => :asc).map{ |assignment| [assignment.resource_link_title, assignment.id]}, {prompt: "No Assignment Selected"}, {class: "form-control"} %>
+      <% if @user.floating_assignments.count != 0 %>
+        <%= form.select :assignment_id, @user.floating_assignments.order(:id => :asc).map{ |assignment| [assignment.resource_link_title, assignment.id]}, {prompt: "No Assignment Selected"}, {class: "form-control"} %>
+      <% else %>
+        <%= form.select :assignment_id, @user.floating_assignments.order(:id => :asc).map{ |assignment| [assignment.resource_link_title, assignment.id]}, {prompt: "No Assignment Available"}, {class: "form-control"} %>
+      <% end %>
     </div>
 
     <div class="actions form-group">
