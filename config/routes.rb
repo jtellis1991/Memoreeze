@@ -39,12 +39,15 @@ Rails.application.routes.draw do
   get "decks/:deck_id/cards/:id/illustrative_test/edit" => "cards#edit_illustrative_test"
   get "decks/:deck_id/cards/:id/solution/edit" => "cards#edit_solution"
   get "decks/:deck_id/cards/:id/target/edit" => "cards#edit_target"
+  get "decks/:deck_id/cards/:id/deck_name/edit" => "cards#edit_deck_name"
 
   #Ajaxify links for updating fields in Cards
   patch "/decks/:deck_id/cards/:id/solution", to: 'cards#update_solution'
   patch "/decks/:deck_id/cards/:id/explanation", to: 'cards#update_explanation'
   patch "/decks/:deck_id/cards/:id/illustrative_test", to: 'cards#update_illustrative_test'
   patch "/decks/:deck_id/cards/:id/target", to: 'cards#update_target'
+  patch "/decks/:deck_id/cards/:id/deck_name", to: 'cards#update_deck_name'
+
 
   get 'dashboard', to: 'users#dashboard'
 end
