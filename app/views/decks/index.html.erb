@@ -13,6 +13,7 @@
   </thead>
   
   <tbody>
+    <tr id="zerothDeck"></tr>
     <% @decks.order(:id => :desc).each do |deck| %>
       <%= render 'deck', deck: deck %>
     <% end %>

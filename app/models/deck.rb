@@ -13,7 +13,7 @@ class Deck < ApplicationRecord
 
   has_many :cards, class_name: "Card", foreign_key: :deck_id, dependent: :destroy
 
-  has_many :assignments, class_name: "Assignment", foreign_key: :deck_id, dependent: :destroy
+  has_many :assignments, class_name: "Assignment", foreign_key: :deck_id
 
   # has_many(:categories, { :through => :tags, :source => :category })
    # has_many(:tags, { :class_name => "Tag", :foreign_key => "deck_id", :dependent => :destroy })

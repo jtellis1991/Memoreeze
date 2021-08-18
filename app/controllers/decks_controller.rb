@@ -52,6 +52,7 @@ class DecksController < ApplicationController
   # POST /decks or /decks.json
   def create
     @deck = Deck.new(deck_params)
+
     if !params[:deck][:assignment_id].blank?
       @deck.assignments << Assignment.find(params[:deck][:assignment_id])
     end
@@ -60,6 +61,7 @@ class DecksController < ApplicationController
       if @deck.save
         format.html { redirect_to deck_cards_path(@deck)}
         format.json { render :show, status: :created, location: @deck }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @deck.errors, status: :unprocessable_entity }

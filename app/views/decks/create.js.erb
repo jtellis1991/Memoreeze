@@ -1,0 +1,10 @@
+var added_deck = $("<%= j(render 'decks/deck', deck: @deck) %>");
+
+added_deck.hide();
+
+$("#zerothDeck").after(added_deck);
+
+added_deck.slideDown();
+
+$('#newDeck').modal('hide')
+
