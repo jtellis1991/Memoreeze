@@ -13,7 +13,6 @@ class Deck < ApplicationRecord
   belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id" })
   # has_many(:tags, { :class_name => "Tag", :foreign_key => "deck_id", :dependent => :destroy })
   has_many(:cards, { :class_name => "Card", :foreign_key => "deck_id", :dependent => :destroy })
-  belongs_to(:assignment, { :required => false, :class_name => "Assignment", :foreign_key => "assignment_id" })
   # has_many(:categories, { :through => :tags, :source => :category })
 
 end

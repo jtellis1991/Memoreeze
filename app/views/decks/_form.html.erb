@@ -24,7 +24,7 @@
       <%= form.label :assignment_id, "Select an Assignment for this Deck?" %>
     </div>
     <div>
-      <%= collection_select(:deck, :assignment_id, @user.floating_assignments.order(:id => :asc).map{ |assignment| [assignment.resource_link_title, assignment.id]}, :id, :resource_link_title, prompt: "No Assignment Selected") %>
+     <%= form.select :assignment_id, @user.floating_assignments.order(:id => :asc).map{ |assignment| [assignment.resource_link_title, assignment.id]}, {include_blank: true} %>
     </div>
 
     <div class="actions text-right">
