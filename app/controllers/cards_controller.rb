@@ -52,6 +52,13 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit_deck_name
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # POST /cards or /cards.json
   def create
 
@@ -113,6 +120,19 @@ class CardsController < ApplicationController
   def update_explanation
     respond_to do |format|
       if @card.target.update(explanation: params[:card][:explanation])
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+        format.js 
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_deck_name
+    respond_to do |format|
+      if @card.deck.update(name: params[:card][:deck_name])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
