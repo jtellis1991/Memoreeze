@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(card) %>" class="border text-center">
   <td class="col-2">
     <div id="<%= dom_id(card) %>_target">
-      <%= link_to "cards/#{card.id}/target/edit", class: "text-dark", remote: true do %>
+      <%= link_to "cards/#{card.id}/target/edit", class: "text-primary text-decoration-none", remote: true do %>
         <p>
           <%= markdown(card.target.target) %>
         </p>
@@ -11,7 +11,7 @@
     <td class="col-3">
     <div id="<%= dom_id(card) %>_explanation">
       <p>
-        <%= link_to "cards/#{card.id}/explanation/edit", class: "text-dark", remote: true do %>
+        <%= link_to "cards/#{card.id}/explanation/edit", class: "text-primary text-decoration-none", remote: true do %>
           <%= markdown(card.target.explanation) %>
       <p>    
       <% end %>
@@ -19,7 +19,7 @@
   </td>
   <td class="col-3">
     <div id="<%= dom_id(card) %>_illustrative_test">
-      <%= link_to "cards/#{card.id}/illustrative_test/edit", class: "text-dark", remote: true do %>
+      <%= link_to "cards/#{card.id}/illustrative_test/edit", class: "text-primary text-decoration-none", remote: true do %>
         <p>
           <%= markdown(card.illustrative_test) %>
         </p>
@@ -29,7 +29,7 @@
   <td class="col-3">
     <div id="<%= dom_id(card) %>_solution">
       <p>
-        <%= link_to "cards/#{card.id}/solution/edit", class: "text-dark", remote: true do %>
+        <%= link_to "cards/#{card.id}/solution/edit", class: "text-primary text-decoration-none", remote: true do %>
           <%= markdown(card.solution) %>
       <p>    
       <% end %>
@@ -37,7 +37,7 @@
   </td>
   <td class="col-1">
     <div id="<%= dom_id(card) %>_delete">
-      <%= link_to deck_card_path(deck, card), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-lg text-muted", remote: true do%>
+      <%= link_to deck_card_path(deck, card), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-lg text-secondary", remote: true do%>
         <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
     </div>

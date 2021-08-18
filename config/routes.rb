@@ -36,5 +36,10 @@ Rails.application.routes.draw do
 
   get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
 
+  post "/decks/:deck_id/cards/:id/solution", to: 'cards#update_solution'
+  post "/decks/:deck_id/cards/:id/explanation", to: 'cards#update_explanation'
+  post "/decks/:deck_id/cards/:id/illustrative_test", to: 'cards#update_illustrative_test'
+  post "/decks/:deck_id/cards/:id/target", to: 'cards#update_target'
+
   get 'dashboard', to: 'users#dashboard'
 end

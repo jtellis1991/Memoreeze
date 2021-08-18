@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target edit_explanation]
+  before_action :set_card, only: %i[ show edit update destroy edit_illustrative_test edit_solution edit_target edit_explanation update_solution update_illustrative_test update_target update_explanation]
   before_action :set_deck
   before_action :no_blanks, only: %i[ create update ]
 
@@ -72,9 +72,60 @@ class CardsController < ApplicationController
 
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
-    old_card = Card.find(params[:id])
     respond_to do |format|
       if @card.update(card_params.except(:target)) && @card.target.update(target: params[:card][:target], explanation: params[:card][:explanation])
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+        format.js 
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_illustrative_test
+    respond_to do |format|
+      if @card.update(illustrative_test: params[:illustrative_test])
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+        format.js 
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_solution
+    respond_to do |format|
+      if @card.update(solution: params[:solution])
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+        format.js 
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_target
+    respond_to do |format|
+      if @card.target.update(target: params[:target])
+        format.html { redirect_to @card, notice: "Card was successfully updated." }
+        format.json { render :show, status: :ok, location: @card }
+        format.js 
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_explanation
+    respond_to do |format|
+      if @card.target.update(explanation: params[:explanation])
         format.html { redirect_to @card, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
         format.js 
