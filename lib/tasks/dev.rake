@@ -5,7 +5,7 @@ task({ :sample_data => :environment}) do
   starting = Time.now
 
   Deck.delete_all
-  Cards.delete_all
+  Card.delete_all
   Target.delete_all
 
   people = Array.new(10) do
@@ -38,23 +38,27 @@ task({ :sample_data => :environment}) do
 
   rand(15).times do
     deck = instructor.decks.create(
-      name: Faker::Desser.variety,
+      name: Faker::Dessert.variety,
     )
 
     p deck.errors.full_messages
 
     instructor.decks.each do |deck|
-      if rand < 0.5
-        photo.fans << follower
-      end
-
-      if rand < 0.25
-        comment = photo.comments.create(
-          body: Faker::Quote.jack_handey,
-          author: follower
+      rand(15).times do
+        target = Target.create(
+          target: Faker::Lorem.word,
+          explanation: Faker::Lorem.paragraph(
+            sentence_count: 2,
+            supplemental: true,
+            random_sentences_to_add: 4
+          )
         )
-
-        p comment.errors.full_messages
+        
+        deck.cards.create(
+          target_id: target.id,
+          illustrative_test: Faker::Lorem.question,
+          solution: Faker::Lorem.sentence
+        )
       end
     end
   end
