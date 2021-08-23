@@ -54,7 +54,11 @@ class LtiController < ApplicationController
     session[:assignment_id] = @assignment.id
     
     # redirect the user to the assignment
-    redirect_to dashboard_url
+    if params[:roles] == "Learner"
+      redirect_to course_assignment_path(@course, @assignment)
+    else
+      redirect_to dashboard_url
+    end
   end
 
   def submitscore

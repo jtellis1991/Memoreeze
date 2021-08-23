@@ -80,4 +80,11 @@ pause at 12:52 pm
 resume at 1:17 pm
 pause at 6:24 pm
 
+Time start Aug 21, 4:30 pm
+Time end 4:40 pm
+
+Time start Aug 23, 8:43 am
+pause at 8:50 am
+time resume 9:09 am
+
 end

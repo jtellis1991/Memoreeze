@@ -6,6 +6,8 @@ class CreateAssignments < ActiveRecord::Migration[6.1]
       t.string  :resource_link_id
       t.string  :resource_link_title
       t.integer :deck_id
+      t.integer :points_up, default: 1
+      t.integer :points_down, default: 1
 
       t.timestamps
     end

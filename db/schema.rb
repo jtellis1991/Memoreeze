@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
     t.string "resource_link_id"
     t.string "resource_link_title"
     t.integer "deck_id"
+    t.integer "points_up", default: 1
+    t.integer "points_down", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
     t.integer "user_id"
     t.string "reviews_per_day"
     t.integer "new_per_day"
+    t.string "time_zone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

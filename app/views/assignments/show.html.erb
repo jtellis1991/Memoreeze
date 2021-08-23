@@ -1,4 +1,4 @@
-<% if @assignment.decks.first.nil? && @user.roles == "Instructor" %>
+<% if @assignment.deck.nil? && @user.roles == "Instructor" %>
 
   <div class="card">
     <div class="card-header display-4">
@@ -15,7 +15,7 @@
 
   <div class="card">
     <div class="card-header display-4">
-      <%= @assignment.decks.first.name %>
+      <%= @assignment.deck.name %>
     </div>
     <div class="card-body">
       <h5 class="card-title">This deck has <%= pluralize(@assignment.decks.first.cards.count, "card") %></h5>
@@ -32,13 +32,13 @@
 
   <div class="card">
     <div class="card-header display-4">
-      <%= @assignment.decks.first.name %>
+      <%= @assignment.deck.name %>
     </div>
     <div class="card-body">
-      <h5 class="card-title">This deck has <%= pluralize(@assignment.decks.first.cards.count, "card") %></h5>
+      <h5 class="card-title">This deck has <%= pluralize(@assignment.deck.cards.count, "card") %></h5>
       <p class="card-text">Click link to review and learn new cards </p>
       <div class="d-flex justify-content-between">
-        <%= link_to 'Study Deck', deck_path(@assignment.decks.first, :assignment_id => @assignment.id, :user_id => @user.id) %>
+        <%= link_to 'Study Deck', deck_path(@assignment.deck) %>
       </div>
     </div>
   </div>
