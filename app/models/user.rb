@@ -26,9 +26,8 @@ class User < ApplicationRecord
 
   has_many :reviews, foreign_key: :user_id, class_name: "Review", dependent: :destroy
 
-  has_many(:enrollments, { :class_name => "Enrollment", :foreign_key => "user_id", :dependent => :destroy })
-  
-  has_one(:review_setting, { :class_name => "ReviewSetting", :foreign_key => "user_id", :dependent => :destroy })
+  has_one :review_setting, class_name: "ReviewSetting", foreign_key: :user_id, dependent: :destroy
 
+  has_many(:enrollments, { :class_name => "Enrollment", :foreign_key => "user_id", :dependent => :destroy })
 
 end

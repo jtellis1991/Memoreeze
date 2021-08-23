@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :tool_consumer_id
       t.string  :tc_user_id
       t.string  :name
-
+      
       t.timestamps
     end
   end

@@ -42,6 +42,9 @@ class LtiController < ApplicationController
 
     @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
     @user.update(roles: params[:roles], name: params[:lis_person_name_full])
+    if @user.review_setting.blank?
+      @user.create_review_setting
+    end
 
     @course = Course.create_with(tool_consumer_id: @tool_consumer.id, context_title: params[:context_title], user_id: @user.id).find_or_create_by(context_id: params[:context_id])
     @course.update(context_title: params[:context_title])
