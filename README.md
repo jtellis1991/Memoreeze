@@ -91,5 +91,6 @@ resume at 11:56 am
 stop at 1:34 pm
 resumet at 1:42 pm
 pause at 2:00 pm
+resume at 2:19 pm
 
 end

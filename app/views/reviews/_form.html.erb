@@ -41,8 +41,13 @@
       <%= form.hidden_field :card_id, value: card.id %>
     </div>
 
+    <div class="form-group font-weight-bold">
+      <%= form.label :user_id, class: 'sr-only' %>
+      <%= form.hidden_field :user_id, value: @user.id %>
+    </div>
+
     <div class="actions form-group">
-      <%= form.submit "Again", class: "btn btn-danger btn-block mt-3" %>
+      <%= form.submit class: "btn btn-danger btn-block mt-3", name: "result", value: "Again" %>
     </div>
 
   <% end %>
@@ -76,8 +81,13 @@
       <%= form.hidden_field :card_id, value: card.id %>
     </div>
 
+    <div class="form-group font-weight-bold">
+      <%= form.label :user_id, class: 'sr-only' %>
+      <%= form.hidden_field :user_id, value: @user.id %>
+    </div>
+
     <div class="actions form-group">
-      <%= form.submit "Good", class: "btn btn-success btn-block mt-3" %>
+      <%= form.submit class: "btn btn-success btn-block mt-3", name: "result", value: "Good" %>
     </div>
 
   <% end %>

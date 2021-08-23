@@ -77,10 +77,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "results", force: :cascade do |t|
     t.integer "review_id"
-    t.float "again"
-    t.float "hard"
-    t.float "good"
-    t.float "easy"
+    t.integer "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

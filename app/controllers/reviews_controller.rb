@@ -22,9 +22,10 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
-
+    
     respond_to do |format|
       if @review.save
+        @result = @review.create_result(result: params[:result].downcase)
         format.html { redirect_to @review, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
       else
@@ -64,7 +65,7 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:next_review, :milliseconds_elapsed, :card_id, :grade_id)
+      params.require(:review).permit(:next_review, :milliseconds_elapsed, :card_id, :grade_id, :user_id)
     end
     
     def current_time
