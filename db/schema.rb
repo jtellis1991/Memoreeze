@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
 
   create_table "review_settings", force: :cascade do |t|
     t.integer "user_id"
-    t.string "reviews_per_day"
-    t.integer "new_per_day"
+    t.string "reviews_per_day", default: "10"
+    t.integer "new_per_day", default: 10
     t.string "time_zone", default: "Central Time (US & Canada)"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

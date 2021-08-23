@@ -42,7 +42,7 @@ class LtiController < ApplicationController
 
     @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
     @user.update(roles: params[:roles], name: params[:lis_person_name_full])
-    if @user.review_setting.blank?
+    if @user.review_setting.blank? && @user.roles == "Instructor"
       @user.create_review_setting
     end
 

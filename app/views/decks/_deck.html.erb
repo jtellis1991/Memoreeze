@@ -6,14 +6,19 @@
       <% end %>
     </div>
   </td>
-  <td class="col-5 align-middle">
+  <td class="col-4 align-middle">
     <div id="<%= dom_id(deck) %>_name">
       <%= link_to "decks/#{deck.id}/name/edit", class: "link-primary text-decoration-none", remote: true do %>
           <%= deck.name %>
       <% end %>
     </div>
   </td>
-  <td class="col-6 align-middle">
+  <td class="col-2 align-middle">
+    <div id="<%= dom_id(deck) %>_number_of_cards">
+        <%= deck.cards.count %>
+    </div>
+  </td>
+  <td class="col-4 align-middle">
     <% if deck.assignments.blank? %>
         No assignment uses this deck.
     <% else %>

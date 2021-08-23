@@ -22,5 +22,15 @@
 
 <p>
   <strong>Time Zone:</strong>
-  <%= @user.review_settings.time_zone %>
+  <%= @user.review_setting.time_zone %>
+</p>
+
+<p>
+  <strong>New Cards / Day:</strong>
+  <%= @user.review_setting.new_per_day %>
+</p>
+
+<p>
+  <strong>Reviews / Day:</strong>
+  <%= @user.review_setting.reviews_per_day %>
 </p>
