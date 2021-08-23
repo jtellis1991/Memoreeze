@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
   <div class="container d-flex">
-
+    <% if @user.roles == "Instructor" %>
+        
       <%= link_to "Memoreeze", dashboard_path, class: "navbar-brand" %>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +56,11 @@
 
         </ul>
       </div>
+
+    <% else %>
+      <%= link_to "Memoreeze", '#', class: "navbar-brand" %>
+
+    <% end %>
  
   </div>
 </nav>

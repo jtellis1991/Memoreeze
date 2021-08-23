@@ -42,26 +42,27 @@ task({ :sample_data => :environment}) do
     )
 
     p deck.errors.full_messages
+  end
 
-    instructor.decks.each do |deck|
-      rand(15).times do
-        target = Target.create(
-          target: Faker::Lorem.word,
-          explanation: Faker::Lorem.paragraph(
-            sentence_count: 2,
-            supplemental: true,
-            random_sentences_to_add: 4
-          )
+  instructor.decks.each do |deck|
+    rand(15).times do
+      target = Target.create(
+        target: Faker::Lorem.word,
+        explanation: Faker::Lorem.paragraph(
+          sentence_count: 2,
+          supplemental: true,
+          random_sentences_to_add: 4
         )
-        
-        deck.cards.create(
-          target_id: target.id,
-          illustrative_test: Faker::Lorem.question,
-          solution: Faker::Lorem.sentence
-        )
-      end
+      )
+      
+      deck.cards.create(
+        target_id: target.id,
+        illustrative_test: Faker::Lorem.question,
+        solution: Faker::Lorem.sentence
+      )
     end
   end
+  
 
   ending = Time.now
   p "It took #{(ending - starting).to_i} seconds to create sample data."
