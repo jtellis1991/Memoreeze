@@ -67,7 +67,7 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:next_review, :milliseconds_elapsed, :card_id, :grade_id)
     end
     
-    def time_zone
-      @
+    def current_time
+      Time.now.in_time_zone(@review.card.user.review_setting.time_zone)
     end
 end

@@ -2,16 +2,16 @@
   <%= card.illustrative_test %>
 </h1>
 
-<h3 class="text-center mb-5 collapse multi-collapse" id="multiCollapseExample2">
+<h3 class="text-center mb-5 collapse multi-collapse" id="solution">
   <%= card.solution %>
 </h3>
 
-<ul class="list-group list-group-flush">
+<ul class="list-group list-group-flush collapse multi-collapse" id="explanation">
     <li class="list-group-item"></li>
     <li class="list-group-item"><%= card.target.explanation %></li>
 </ul>
 
-<div class="row">
+<div class="row collapse multi-collapse" id="result">
   <%# Review Again in 1 day if you got the answer %>
   <%= form_with(model: review, class: "col-6") do |form| %>
     <% if review.errors.any? %>
