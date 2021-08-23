@@ -4,7 +4,7 @@ class CreateReviewSettings < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.string  :reviews_per_day
       t.integer :new_per_day
-      t.string  :time_zone
+      t.string  :time_zone, default: "Central Time (US & Canada)"
 
       t.timestamps
     end

@@ -86,5 +86,7 @@ Time end 4:40 pm
 Time start Aug 23, 8:43 am
 pause at 8:50 am
 time resume 9:09 am
+pause at 11:41 am
+resume at 11:56 am
 
 end
