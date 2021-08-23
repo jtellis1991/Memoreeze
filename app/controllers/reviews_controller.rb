@@ -66,4 +66,8 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:next_review, :milliseconds_elapsed, :card_id, :grade_id)
     end
+    
+    def time_zone
+      @
+    end
 end
