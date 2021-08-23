@@ -8,6 +8,8 @@
 #  resource_link_id    :string
 #  resource_link_title :string
 #  deck_id             :integer
+#  points_up           :integer          default(1)
+#  points_down         :integer          default(1)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #

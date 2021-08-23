@@ -15,7 +15,7 @@
   <td class="col-4 align-middle">
       <%= assignment.resource_link_title %>
   </td>
-  <td class="col-5 align-middle">
+  <td class="col-4 align-middle">
     <div id="<%= dom_id(assignment) %>_deck" >
       <%= link_to "/courses/#{assignment.course.id}/assignments/#{assignment.id}/deck/edit", class: "link-primary text-decoration-none", remote: true do %>
         <% if assignment.deck.blank? %>
@@ -33,6 +33,16 @@
       <% else %>
         <%= assignment.deck.cards.count %>
       <% end %>
+    </div>
+  </td>
+  <td class="col-2 align-middle">
+    <div id="<%= dom_id(assignment) %>_points_up" >
+        <%= assignment.points_up %>
+    </div>
+  </td>
+  <td class="col-2 align-middle">
+    <div id="<%= dom_id(assignment) %>_points_down" >
+        <%= assignment.points_down %>
     </div>
   </td>
 </tr>
