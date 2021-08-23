@@ -18,7 +18,7 @@
       <%= @assignment.deck.name %>
     </div>
     <div class="card-body">
-      <h5 class="card-title">This deck has <%= pluralize(@assignment.decks.first.cards.count, "card") %></h5>
+      <h5 class="card-title">This deck has <%= pluralize(@assignment.deck.cards.count, "card") %></h5>
       <p class="card-text">Edit the deck to add or modify cards. </p>
       <div class="d-flex justify-content-between">
         <%= link_to 'Edit Cards in Deck', cards_path(:assignment_id => @assignment.id, :user_id => @user.id), class: "btn btn-primary" %> 
