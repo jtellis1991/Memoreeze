@@ -14,6 +14,6 @@ class DeckAccount < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: :user_id 
   belongs_to :grade, required: true, class_name: "Grade", foreign_key: :grade_id 
   belongs_to :deck, required: true, class_name: "Deck", foreign_key: :deck_id 
-  has_many :card_accounts, class_name: "CardAccount", foreign_key: :deck_id, dependent: :destroy
+  has_many :card_accounts, class_name: "CardAccount", foreign_key: :deck_account_id, dependent: :destroy
 
 end

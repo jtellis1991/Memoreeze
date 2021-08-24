@@ -66,19 +66,22 @@ class LtiController < ApplicationController
         @enrollment = @user.enrollments.find_by(course_id: @course.id)
       end
 
-      # if learner does not have a deck account for this assigned deck, then create deck_account
-      if @user.deck_accounts.where(deck_id: @assignment.deck.id).blank?
-        @deck_account.create(deck_id: @assignment.deck.id, )
-
-      end
       # create grade for the assignment if first time accessing assignment in the course as a learner. 
       # Save point scale, and assign student the deck and max score to begin.
       if @user.grades.where(enrollment_id: @enrollment.id, assignment_id: @assignment.id).blank?
-        Grade.create(enrollment_id: @enrollment.id, deck_account_id: @deck_account.id, assignment_id: @assignment.id, score: params[:custom_canvas_assignment_points_possible])
-        # for each card in the assigned deck, create a de
-
+        @grade = Grade.create(enrollment_id: @enrollment.id, assignment_id: @assignment.id, score: params[:custom_canvas_assignment_points_possible])
       #NOTE: no handling right now if the points possible in the assignment change, may need points_possible field, or consider using percents
+      else
+        @grade = @user.grades.find_by(assignment_id: @assignment.id)
       end
+
+      # if learner does not have a deck account for this assigned deck, then create deck_account
+      if @user.deck_accounts.where(deck_id: @assignment.deck.id).blank?
+        @deck_account = DeckAccount.create(deck_id: @assignment.deck.id, user_id: @user.id, grade_id: @grade.id)
+      else
+        @deck_account = @user.deck_accounts.find_by(deck_id: @assignment.deck.id)
+      end
+
       # redirect the user to the assignment if learner
       redirect_to course_assignment_path(@course, @assignment)
     else
