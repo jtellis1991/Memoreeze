@@ -1,7 +1,6 @@
 class CreateGrades < ActiveRecord::Migration[6.1]
   def change
     create_table :grades do |t|
-      t.integer :deck_id
       t.float :score
       t.integer :enrollment_id
       t.integer :assignment_id
