@@ -33,13 +33,10 @@
   <div class="card">
     <div class="card-header display-4">
       <%= @assignment.deck.name %>
-      <%= @card_accounts_due.count %>
-      <%= @today %>
-      <%= @first_due.next_review_due %>
     </div>
     <div class="card-body">
       <h5 class="card-title">This deck has <%= pluralize(@assignment.deck.cards.count, "card") %>.</h5>
-      <p class="card-text">Click link to review and learn new cards </p>
+      <h5 class="card-title">You have <%= pluralize(@card_accounts_due.count, "review") %> left today.</h5>
       <div class="d-flex justify-content-between">
 
   <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newReview">

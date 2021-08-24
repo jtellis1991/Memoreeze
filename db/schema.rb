@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_172532) do
   end
 
   create_table "grades", force: :cascade do |t|
-    t.integer "deck_id"
     t.float "score"
     t.integer "enrollment_id"
     t.integer "assignment_id"
