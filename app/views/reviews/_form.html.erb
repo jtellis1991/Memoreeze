@@ -1,14 +1,14 @@
 <h1 class="text-center mb-5">
-  <%= card.illustrative_test %>
+  <%= card_account.card.illustrative_test %>
 </h1>
 
 <h3 class="text-center mb-5 collapse multi-collapse" id="solution">
-  <%= card.solution %>
+  <%= card_account.card.solution %>
 </h3>
 
 <ul class="list-group list-group-flush collapse multi-collapse" id="explanation">
     <li class="list-group-item"></li>
-    <li class="list-group-item"><%= card.target.explanation %></li>
+    <li class="list-group-item"><%= card_account.card.target.explanation %></li>
 </ul>
 
 <div class="row collapse multi-collapse" id="result">
@@ -27,18 +27,13 @@
     <% end %>
 
     <div class="form-group font-weight-bold">
-      <%= form.label :next_review, class: 'sr-only' %>
-      <%= form.hidden_field :next_review, value: 0 %>
-    </div>
-
-    <div class="form-group font-weight-bold">
       <%= form.label :milliseconds_elapsed, class: 'sr-only' %>
       <%= form.hidden_field :milliseconds_elapsed %>
     </div>
 
     <div class="form-group font-weight-bold">
-      <%= form.label :card_id, class: 'sr-only' %>
-      <%= form.hidden_field :card_id, value: card.id %>
+      <%= form.label :card_account_id, class: 'sr-only' %>
+      <%= form.hidden_field :card_account_id, value: card_account.id %>
     </div>
 
     <div class="form-group font-weight-bold">
@@ -67,17 +62,12 @@
     <% end %>
 
     <div class="form-group font-weight-bold">
-      <%= form.label :next_review, class: 'sr-only' %>
-      <%= form.hidden_field :next_review, value: 1 %>
-    </div>
-
-    <div class="form-group font-weight-bold">
       <%= form.label :milliseconds_elapsed, class: 'sr-only' %>
       <%= form.hidden_field :milliseconds_elapsed %>
     </div>
 
     <div class="form-group font-weight-bold">
-      <%= form.label :card_id, class: 'sr-only' %>
+      <%= form.label :card__account_id, class: 'sr-only' %>
       <%= form.hidden_field :card_id, value: card.id %>
     </div>
 

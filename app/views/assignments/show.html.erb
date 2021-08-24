@@ -55,7 +55,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= render '/reviews/form', deck: @assignment.deck, card: @assignment.deck.cards[0], review: Review.new %>
+          <%= render '/reviews/form', card_account: @next_card_account, review: Review.new %>
         </div>
       </div>
     </div>

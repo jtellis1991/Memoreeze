@@ -100,6 +100,7 @@ resume at 12:41 pm
 pause at 1:19 pm
 resume at 1:24 pm
 pause at 2:48 pm
+resume at 3:14 pm
 
 
 end
