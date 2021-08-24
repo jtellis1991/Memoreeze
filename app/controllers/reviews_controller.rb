@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ show edit update destroy ]
+  after_action :check_if_study_complete, only: %i[ create ]
 
   # GET /reviews or /reviews.json
   def index
@@ -74,5 +75,22 @@ class ReviewsController < ApplicationController
     
     def current_time
       Time.now.in_time_zone(@review.card.user.review_setting.time_zone)
+    end
+
+    def card_accounts_due
+      @deck_account = @user.deck_accounts.find_by(deck_id: current_assignment.deck.id)
+      @card_accounts_due = []
+      @deck_account.card_accounts.each do |card_account|
+        if card_account.next_review_due.to_date === today.to_date
+          @card_accounts_due << card_account
+        end
+      end
+      return @card_accounts_due
+    end
+
+    def check_if_study_complete
+      if card_accounts_due.count == 0
+        @user.deck_accounts.find_by(deck_id: @assignment.deck.id).update(is_todays_study_complete: true)
+      end
     end
 end
