@@ -81,6 +81,13 @@ class LtiController < ApplicationController
       else
         @deck_account = @user.deck_accounts.find_by(deck_id: @assignment.deck.id)
       end
+      @deck = @deck_account.deck
+
+      # go through all cards in the assigned deck and create a Card Account if it does not exist. 
+      @deck.cards.each do |card|
+        if @deck_account.card_accounts.where(card_id: card.id).blank?
+          CardAccount.create(deck_account_id: @deck_account.id, card_id: @card.id)
+        end
 
       # redirect the user to the assignment if learner
       redirect_to course_assignment_path(@course, @assignment)
