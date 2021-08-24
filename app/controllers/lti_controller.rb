@@ -69,8 +69,8 @@ class LtiController < ApplicationController
       # create grade for the assignment if first time accessing assignment in the course as a learner. 
       # Save point scale, and assign student the deck and max score to begin.
       if @user.grades.where(enrollment_id: @enrollment.id, assignment_id: @assignment.id).blank?
-        @grade = Grade.create(enrollment_id: @enrollment.id, assignment_id: @assignment.id, score: params[:custom_canvas_assignment_points_possible])
-      #NOTE: no handling right now if the points possible in the assignment change, may need points_possible field, or consider using percents
+        @grade = Grade.create(enrollment_id: @enrollment.id, assignment_id: @assignment.id, score: params[:custom_canvas_assignment_points_possible], points_possible: params[:custom_canvas_assignment_points_possible])
+      #NOTE: no handling right now if the points possible in the assignment are updated by instructor later
       else
         @grade = @user.grades.find_by(assignment_id: @assignment.id)
       end

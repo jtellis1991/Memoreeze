@@ -13,7 +13,7 @@
 
 <div class="row collapse multi-collapse" id="result">
   <%# Review Again in 1 day if you got the answer %>
-  <%= form_with(model: review, class: "col-6") do |form| %>
+  <%= form_with(model: review, class: "col-6", local: false) do |form| %>
     <% if review.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -53,7 +53,7 @@
   <% end %>
 
   <%# Review Again in 1 day if you got the answer %>
-  <%= form_with(model: review, class: "col-6") do |form| %>
+  <%= form_with(model: review, class: "col-6", local: false) do |form| %>
     <% if review.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
