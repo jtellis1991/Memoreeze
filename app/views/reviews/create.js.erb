@@ -1,5 +1,4 @@
 
 
 $('#newReview').modal('hide')
-
-$("#<%= dom_id(@deck) %>_name_form").replaceWith("<%= j(render("decks/name", deck: @deck))%>")
+$("#newReviewForm").html("<%= j(render('/reviews/form', card_account: @card_accounts_due.first, review: Review.new)) %>")
