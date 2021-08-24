@@ -11,9 +11,9 @@
 #  updated_at       :datetime         not null
 #
 class Course < ApplicationRecord
-  has_many(:enrollments, { :class_name => "Enrollment", :foreign_key => "course_id", :dependent => :destroy })
-  has_many(:assignments, { :class_name => "Assignment", :foreign_key => "course_id", :dependent => :destroy })
-  belongs_to(:tool_consumer, { :required => false, :class_name => "ToolConsumer", :foreign_key => "tool_consumer_id" })
-  belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id" })
+  has_many :enrollments, class_name: "Enrollment", foreign_key: :course_id, dependent: :destroy 
+  has_many :assignments, class_name: "Assignment", foreign_key: :course_id, dependent: :destroy 
+  belongs_to :tool_consumer, required: false, class_name: "ToolConsumer", foreign_key: :tool_consumer_id
+  belongs_to :user, required: false, class_name: "User", foreign_key: :user_id
 
 end
