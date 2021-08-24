@@ -26,6 +26,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         @result = @review.create_result(result: params[:result].downcase)
+        @result.card_account.udpate(last_interval: params[:review][:interval], )
         format.html { redirect_to @review, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
         format.js
@@ -66,7 +67,7 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:milliseconds_elapsed, :card_id, :grade_id, :user_id)
+      params.require(:review).permit(:milliseconds_elapsed, :card_account_id, :user_id)
     end
     
     def current_time
