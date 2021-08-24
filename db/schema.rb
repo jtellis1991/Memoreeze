@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_215713) do
+ActiveRecord::Schema.define(version: 2021_08_24_172532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
     t.integer "deck_id"
     t.integer "points_up", default: 1
     t.integer "points_down", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "card_accounts", force: :cascade do |t|
+    t.integer "deck_account_id"
+    t.integer "card_id"
+    t.integer "status", default: 0
+    t.integer "last_interval", default: 0
+    t.string "next_review_due", default: "0"
+    t.integer "ease", default: 250
+    t.boolean "is_troublemaker", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,6 +53,15 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
     t.integer "user_id"
     t.string "context_id"
     t.string "context_title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "deck_accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "grade_id"
+    t.integer "deck_id"
+    t.boolean "is_todays_study_complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -92,9 +113,8 @@ ActiveRecord::Schema.define(version: 2021_08_11_215713) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "next_review"
     t.string "milliseconds_elapsed"
-    t.integer "card_id"
+    t.integer "card_account_id"
     t.integer "grade_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

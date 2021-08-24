@@ -3,9 +3,8 @@
 # Table name: reviews
 #
 #  id                   :bigint           not null, primary key
-#  next_review          :integer
 #  milliseconds_elapsed :string
-#  card_id              :integer
+#  card_account_id      :integer
 #  grade_id             :integer
 #  user_id              :integer
 #  created_at           :datetime         not null
