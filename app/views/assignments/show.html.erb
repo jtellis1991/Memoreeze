@@ -33,6 +33,9 @@
   <div class="card">
     <div class="card-header display-4">
       <%= @assignment.deck.name %>
+      <%= @card_accounts_due.count %>
+      <%= @today %>
+      <%= @first_due.next_review_due %>
     </div>
     <div class="card-body">
       <h5 class="card-title">This deck has <%= pluralize(@assignment.deck.cards.count, "card") %>.</h5>

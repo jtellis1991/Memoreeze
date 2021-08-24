@@ -11,6 +11,8 @@ class AssignmentsController < ApplicationController
   def show
     @user = current_user
     @card_accounts_due = card_accounts_due
+    @today = today
+    @first_due = @card_accounts_due.first
   end
 
   # GET /assignments/new
