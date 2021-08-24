@@ -24,4 +24,13 @@ class ApplicationController < ActionController::Base
   def set_user
     @user = current_user
   end
+
+  def set_time_zone
+    @time_zone = current_assignment.user.review_setting.time_zone
+  end
+
+  def today 
+    @time_zone = set_time_zone
+    Time.now.in_time_zone(@time_zone).to_date
+  end
 end

@@ -1,7 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[ show edit edit_deck update destroy ]
   before_action :set_course
-  before_action :set_deck_account, only: %i[ show ]
 
   # GET /assignments or /assignments.json
   def index
@@ -11,7 +10,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1 or /assignments/1.json
   def show
     @user = current_user
-
+    @card_accounts_due = card_accounts_due
   end
 
   # GET /assignments/new
@@ -79,11 +78,14 @@ class AssignmentsController < ApplicationController
       @course = Course.find(params[:course_id])
     end
 
-    def set_deck_account
-      @deck_account = @user.deck_accounts.find_by(assignment_id: @assignment.id)
-
-      @new_cards = 
-
+    def card_accounts_due
+      @deck_account = @user.deck_accounts.find_by(deck_id: @assignment.deck.id)
+      @card_accounts_due = []
+      @deck_account.card_accounts.each do |card_account|
+        if card_account.next_review_due == today
+          @card_accounts_due << card_account
+        end
+      end
     end
 
     # Only allow a list of trusted parameters through.
