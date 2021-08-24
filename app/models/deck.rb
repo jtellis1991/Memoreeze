@@ -10,14 +10,9 @@
 #
 class Deck < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: :user_id 
-
   has_many :cards, class_name: "Card", foreign_key: :deck_id, dependent: :destroy
-
   has_many :assignments, class_name: "Assignment", foreign_key: :deck_id
-
-  has_many :reviews, through: :cards, source: :review
-
-  has_many :learners, through: :reviews, source: :user
+  has_many :learners, through: :deck_accounts, source: :user
 
   # has_many(:categories, { :through => :tags, :source => :category })
    # has_many(:tags, { :class_name => "Tag", :foreign_key => "deck_id", :dependent => :destroy })
