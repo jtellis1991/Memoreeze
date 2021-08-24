@@ -25,8 +25,10 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if @review.save
+        # create a result for the review that logs the response of the learner
         @result = @review.create_result(result: params[:result].downcase)
-        @result.card_account.udpate(last_interval: params[:review][:interval], )
+        # update the card account with the new interval and advance the next review due by the interval
+        @result.card_account.udpate(last_interval: params[:review][:interval], next_review_due: @result.card_account.next_review_due.advance(days: params[:review][:interval]))
         format.html { redirect_to @review, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
         format.js
