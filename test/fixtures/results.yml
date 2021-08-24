@@ -4,10 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  review_id  :integer
-#  again      :float
-#  hard       :float
-#  good       :float
-#  easy       :float
+#  result     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -92,5 +92,8 @@ stop at 1:34 pm
 resumet at 1:42 pm
 pause at 2:00 pm
 resume at 2:19 pm
+pause at 2:43 pm
+
+Time start Aug 24, 11:50 am
 
 end

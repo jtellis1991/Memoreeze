@@ -28,6 +28,7 @@ class ReviewsController < ApplicationController
         @result = @review.create_result(result: params[:result].downcase)
         format.html { redirect_to @review, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }
