@@ -80,13 +80,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_172532) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "explanations", force: :cascade do |t|
-    t.text "explanation"
-    t.integer "target_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "grades", force: :cascade do |t|
     t.integer "deck_id"
     t.float "score"
