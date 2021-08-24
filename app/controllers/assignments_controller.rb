@@ -88,6 +88,7 @@ class AssignmentsController < ApplicationController
           @card_accounts_due << card_account
         end
       end
+      return @card_accounts_due
     end
 
     # Only allow a list of trusted parameters through.
