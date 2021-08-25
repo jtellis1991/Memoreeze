@@ -28,8 +28,8 @@ class ReviewsController < ApplicationController
       if @review.save
         # create a result for the review that logs the response of the learner
         @result = @review.create_result(result: params[:result].downcase)
-        # update the card account with the new interval and advance the next review due by the interval
-        @review.card_account.update(last_interval: params[:review][:interval], next_review_due: @review.card_account.next_review_due.to_date.advance(days: params[:review][:interval].to_i))
+        # update the card account with the new interval and advance the next review to tomorrow
+        @review.card_account.update(last_interval: params[:review][:interval], next_review_due: today.to_date.advance(days: params[:review][:interval].to_i))
         @card_accounts_due = card_accounts_due
         format.html { redirect_to course_assignment_path(current_course, current_assignment), notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
