@@ -82,7 +82,7 @@ class ReviewsController < ApplicationController
       @deck_account = @user.deck_accounts.find_by(deck_id: current_assignment.deck.id)
       @card_accounts_due = []
       @deck_account.card_accounts.each do |card_account|
-        if card_account.next_review_due.to_date === today.to_date
+        if card_account.next_review_due.to_date === today.to_date || card_account.next_review_due.to_date.before?(today.to_date)
           @card_accounts_due << card_account
         end
       end

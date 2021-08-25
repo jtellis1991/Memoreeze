@@ -101,6 +101,9 @@ pause at 1:19 pm
 resume at 1:24 pm
 pause at 2:48 pm
 resume at 3:14 pm
+pause at 5:22 pm
+
+Time start Aug 25, 3:40 pm
 
 
 end
