@@ -34,7 +34,7 @@ task({ :submit_scores => :environment}) do
         end
 
         # res = @tp.post_extended_replace_result!(score: params[:score])
-        res = @tp.post_extended_replace_result!(score: 0.7)
+        res = @tp.post_extended_replace_result!(score: grade.score/grade.points_possible.to_f)
 
         if res.success?
           puts 'Score Submitted'
