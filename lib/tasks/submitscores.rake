@@ -24,8 +24,8 @@ task({ :submit_scores => :environment}) do
 
         ## SUMBMIT SCORE BACK TO CANVAS
         @tp = IMS::LTI::ToolProvider.new(:quizkey,
-        Rails.configuration.lti_settings[Rails.application.config.lti_settings[:quizkey]],
-        @@launch_params)
+        Rails.configuration.lti_settings[:quizkey],
+        {"lis_outcome_service_url"=>"https://canvas.instructure.com/api/lti/v1/tools/529270/grade_passback", "lis_result_sourcedid"=> "529270-2809753-24268784-30184579-3ee00df884227df1db3938dd3a71a4d0acd9e48d"})
         # add extension
         @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
 
