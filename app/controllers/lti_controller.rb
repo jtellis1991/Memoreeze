@@ -42,9 +42,6 @@ class LtiController < ApplicationController
 
     @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
     @user.update(roles: params[:roles], name: params[:lis_person_name_full])
-    if @user.review_setting.blank? && @user.roles == "Instructor"
-      @user.create_review_setting
-    end
 
     @course = Course.create_with(tool_consumer_id: @tool_consumer.id, context_title: params[:context_title], user_id: @user.id).find_or_create_by(context_id: params[:context_id])
     @course.update(context_title: params[:context_title])
@@ -55,6 +52,11 @@ class LtiController < ApplicationController
     session[:user_id] = @user.id
     session[:course_id] = @course.id
     session[:assignment_id] = @assignment.id
+
+    if @user.review_setting.blank? && @user.roles == "Instructor"
+      @user.create_review_setting
+      @user.review_setting.update(last_submission: today.to_date)
+    end
     
     if params[:roles] == "Learner"
      
@@ -99,29 +101,29 @@ class LtiController < ApplicationController
     end
   end
 
-  def submitscore
-    @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
-                                     Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
-                                     @@launch_params)
-    # add extension
-    @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
+  # def submitscore
+  #   @tp = IMS::LTI::ToolProvider.new(@@launch_params[:oauth_consumer_key],
+  #                                    Rails.configuration.lti_settings[@@launch_params[:oauth_consumer_key]],
+  #                                    @@launch_params)
+  #   # add extension
+  #   @tp.extend IMS::LTI::Extensions::OutcomeData::ToolProvider
 
-    unless @tp.outcome_service?
-      @message = "This tool wasn't launched as an outcome service"
-      puts "This tool wasn't launched as an outcome service"
-      render(:launch_error)
-    end
+  #   unless @tp.outcome_service?
+  #     @message = "This tool wasn't launched as an outcome service"
+  #     puts "This tool wasn't launched as an outcome service"
+  #     render(:launch_error)
+  #   end
 
-    # res = @tp.post_extended_replace_result!(score: params[:score])
-    res = @tp.post_extended_replace_result!(score: 0.7)
+  #   # res = @tp.post_extended_replace_result!(score: params[:score])
+  #   res = @tp.post_extended_replace_result!(score: 0.7)
 
-    if res.success?
-      puts 'Score Submitted'
-    else
-      puts 'Error during score submission'
-    end
-    redirect_to @@launch_params[:launch_presentation_return_url]
-  end
+  #   if res.success?
+  #     puts 'Score Submitted'
+  #   else
+  #     puts 'Error during score submission'
+  #   end
+  #   redirect_to @@launch_params[:launch_presentation_return_url]
+  # end
 
   def allow_iframe
     response.headers.except! 'X-Frame-Options'

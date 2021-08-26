@@ -102,6 +102,7 @@ resume at 1:24 pm
 pause at 2:48 pm
 resume at 3:14 pm
 pause at 5:22 pm
+include 2 more hours for work on plane
 
 Time start Aug 25, 3:40 pm
 paust at 4:03 pm
@@ -109,5 +110,7 @@ paust at 4:03 pm
 Time start Aug 26, 9:05 am
 puase at 11:35 am
 resume at 2:23 pm
+pause at 3:04 pm
+resume at 3:09 pm
 
 end

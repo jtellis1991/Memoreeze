@@ -5,6 +5,7 @@ class CreateReviewSettings < ActiveRecord::Migration[6.1]
       t.string  :reviews_per_day, default: 10
       t.integer :new_per_day, default: 10
       t.string  :time_zone, default: "Central Time (US & Canada)"
+      t.string  :last_submission
 
       t.timestamps
     end

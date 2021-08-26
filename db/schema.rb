@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_172532) do
     t.string "reviews_per_day", default: "10"
     t.integer "new_per_day", default: 10
     t.string "time_zone", default: "Central Time (US & Canada)"
+    t.string "last_submission"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
