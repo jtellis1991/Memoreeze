@@ -85,7 +85,8 @@ ActiveRecord::Schema.define(version: 2021_08_24_172532) do
     t.integer "points_possible"
     t.integer "enrollment_id"
     t.integer "assignment_id"
-    t.text "outcome_params"
+    t.string "lis_outcome_service_url"
+    t.string "lis_result_sourcedid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

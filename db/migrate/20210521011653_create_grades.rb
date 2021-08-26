@@ -5,7 +5,8 @@ class CreateGrades < ActiveRecord::Migration[6.1]
       t.integer :points_possible
       t.integer :enrollment_id
       t.integer :assignment_id
-      t.text    :outcome_params
+      t.string  :lis_outcome_service_url
+      t.string  :lis_result_sourcedid
 
       t.timestamps
     end
