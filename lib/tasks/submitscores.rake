@@ -3,7 +3,8 @@ task({ :submit_scores => :environment}) do
   #This task runs at the end of every day (based on time zone).
   #If DeckAccount.is_todays_study_complete == true, then Grades.score increases by Assignment.points_up unless Grades.score == Grades.points_possible
   #If DeckAccount.is_todays_study_copmlete !- true, then Grades.score decreases by Assignment.points_down unless Grades.score == 0
-  #Send back Grades.score
+  #Reset the DecKAccount.is_todays_study_complete to false
+  #Send back Grades.score/Grades.points_possible to the Canvas Assignment
   
   starting = Time.now
 
@@ -47,5 +48,5 @@ task({ :submit_scores => :environment}) do
   end
 
   ending = Time.now
-  p "It took #{(ending - starting).to_i} seconds to create submit scores."
+  p "It took #{(ending - starting).to_i} seconds to submit scores."
 end
