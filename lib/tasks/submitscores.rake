@@ -9,7 +9,13 @@ task({ :submit_scores => :environment}) do
 
   instructors = User.all.where(roles: "Instructor")
   instructors.each do |instructor|
-    p instructor.name
+    assignments = instructor.assignments
+    assignments.each do |assignment|
+      grades = assignment.grades
+      grades.each do |grade|
+        p  grade.deck_account.is_todays_study_complete?
+      end
+    end
   end
 
   ending = Time.now

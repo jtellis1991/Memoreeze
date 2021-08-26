@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  deck_account_id :integer
 #  card_id         :integer
-#  status          :integer          default(0)
+#  status          :integer          default("learning")
 #  last_interval   :integer          default(0)
 #  next_review_due :string           default("0")
 #  ease            :integer          default(250)
