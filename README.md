@@ -108,5 +108,6 @@ paust at 4:03 pm
 
 Time start Aug 26, 9:05 am
 puase at 11:35 am
+resume at 2:23 pm
 
 end

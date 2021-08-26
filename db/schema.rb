@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_172532) do
     t.integer "points_possible"
     t.integer "enrollment_id"
     t.integer "assignment_id"
+    t.text "outcome_params"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
