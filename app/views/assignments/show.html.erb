@@ -30,6 +30,8 @@
 
 <% else %>
 
-  <%= render '/reviews/card', assignment: @assignment, card_accounts_due: @card_accounts_due %>
-
+  <div id="learnerReview">
+    <%= render '/reviews/card', assignment: @assignment, card_accounts_due: @card_accounts_due %>
+  </div>
+  
 <% end %>

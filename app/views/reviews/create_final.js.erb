@@ -1,4 +1,8 @@
+$('#newReview').removeClass('fade')
 $('#newReview').modal('hide')
-$("#newReviewForm").html("<%= j(render('/reviews/form', card_account: @card_accounts_due.first, review: Review.new)) %>")
-$("#newReviewLabel").html("<%= j(render('/reviews/form_label', card_account: @card_accounts_due.first)) %>")
 $("#cardAccountsNumber").html("<%= j(render('/reviews/form_number', card_accounts_due: @card_accounts_due)) %>")
+$("#reviewButton").html("<%= j(render('/reviews/button', assignment: @assignment, card_accounts_due: @card_accounts_due)) %>")
+
+
+
+

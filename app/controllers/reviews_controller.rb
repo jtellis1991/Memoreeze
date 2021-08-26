@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
         @card_accounts_due = card_accounts_due
         format.html { redirect_to course_assignment_path(current_course, current_assignment), notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
-        format.js
+        @card_accounts_due.blank? ? format.js { render :create_final } : format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @review.errors, status: :unprocessable_entity }

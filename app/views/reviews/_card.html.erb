@@ -7,37 +7,37 @@
       <h5 class="card-title">You have <span id=cardAccountsNumber ><%= pluralize(card_accounts_due.count, "review") %></span> left today.</h5>
       <div class="text-center mt-3">
 
+        <div id="reviewButton">
+          <% if card_accounts_due.count !=0 %>
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newReview">
+              Begin Review
+            </button> 
 
-        <% if card_accounts_due.count !=0 %>
-          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newReview">
-            Begin Review
-          </button> 
+            <!-- Modal -->
+            <div class="modal fade" id="newReview" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="newReviewLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="btn btn-outline-primary btn-lg modal-title" id="newReviewLabel" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="solution result explanation"><%= card_accounts_due.first.card.target.target %></button>
 
-          <!-- Modal -->
-          <div class="modal fade" id="newReview" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="newReviewLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button class="btn btn-outline-primary btn-lg modal-title" id="newReviewLabel" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="solution result explanation"><%= card_accounts_due.first.card.target.target %></button>
-
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" id="newReviewForm">
-                  <%= render '/reviews/form', card_account: card_accounts_due.first, review: Review.new %>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="newReviewForm">
+                    <%= render '/reviews/form', card_account: card_accounts_due.first, review: Review.new %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        <% else %>
+          <% else %>
 
 
-          <h1><i class="fas fa-laugh-beam"></i> Hooray! You are done with your reviews for the day! <i class="fas fa-laugh-beam"></i></div>
+            <h1><i class="fas fa-laugh-beam"></i> Hooray! You are done with your reviews for the day! <i class="fas fa-laugh-beam"></i></div>
 
-        <% end %>
-
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
