@@ -116,4 +116,7 @@ pause at 3:39 pm
 resume at 3:48 pm
 puase at 4:11 pm
 
+Time start Sept 27, 10:49 am
+pause at 10:51 am
+
 end
