@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   end
 
   
-  
+  root 'static#home'
+
   #forced route to default to xml. Thanks Jelani!
   get 'config.xml', to: 'static#xml_config', :defaults => { :format => 'xml'}
 
