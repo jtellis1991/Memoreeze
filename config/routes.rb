@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :tool_consumers
   resources :grades
   resources :enrollments
-  resources :users
 
   resources :decks do
     resources :cards
