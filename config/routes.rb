@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   resources :targets
   resources :review_settings
   resources :results
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   
-  root 'static#home'
+  root 'users#dashboard'
 
   #forced route to default to xml. Thanks Jelani!
   get 'config.xml', to: 'static#xml_config', :defaults => { :format => 'xml'}

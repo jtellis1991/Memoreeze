@@ -2,11 +2,11 @@
 
 class ApplicationController < ActionController::Base
   # skip_before_action :verify_authenticity_token, only: :launch
-  # after_action :allow_iframe
-  before_action :set_user
-  # def allow_iframe
-  #   response.headers.except! 'X-Frame-Options'
-  # end
+  before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  # before_action :set_user
+
   private
 
   def current_user
@@ -32,5 +32,10 @@ class ApplicationController < ActionController::Base
   def today 
     @time_zone = set_time_zone
     Time.now.in_time_zone(@time_zone).to_date
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email])
   end
 end
