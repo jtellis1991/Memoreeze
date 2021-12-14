@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+    if @courses.blank?
+    else
     @courses = @user.courses
+    end
   end
 
   # GET /users/new
