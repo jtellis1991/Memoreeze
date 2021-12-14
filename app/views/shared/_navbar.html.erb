@@ -50,7 +50,8 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <%= link_to "View profile", @user, class: "dropdown-item" %>
-                <%#=# link_to "Sign out", '#', class: "dropdown-item" %>
+                <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>
             </li>
 

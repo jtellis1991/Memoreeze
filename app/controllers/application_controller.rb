@@ -9,9 +9,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user
-    @user ||= session[:user_id] && User.find_by(id: session[:user_id])
-  end
 
   def current_assignment
     @assignment ||= session[:assignment_id] && Assignment.find_by(id: session[:assignment_id])
