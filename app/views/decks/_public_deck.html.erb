@@ -27,3 +27,16 @@
         <%= deck.owner.name %>
     </div>
   </td>  
+    <td class="col-5 align-middle">
+    <div id="<%= dom_id(deck) %>_copy">
+      <% if deck.owner != user %>
+      <%= link_to public_decks_path(deck_id: deck.id), method: :post, data: { confirm: 'Are you sure you want to copy this deck?' }, class: "btn btn-link btn-lg text-secondary", remote: true do%>
+          <i class="fa fa-folder-plus" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+      <span class="btn btn-lg text-secondary disabled">
+        <i class="fa fa-folder-plus" aria-hidden="true"></i>
+      </span>
+      <% end %>
+    </div>
+  </td>  

@@ -72,6 +72,32 @@ class DecksController < ApplicationController
       @deck.assignments << @assignment
     end
    
+    respond_to do |format|
+      if @deck.save && !@assignment.blank?
+        format.html { redirect_to deck_cards_path(@deck)}
+        format.json { render :show, status: :created, location: @deck }
+        format.js {render :create_and_assign}
+      elsif @deck.save
+        format.js
+      else        
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @deck.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def copy_deck
+    @user = current_user
+    @target_deck = Deck.find(params[:deck_id])
+    @deck = @target_deck.dup
+    @deck.owner = @user
+    @deck.save!  
+    @target_deck.cards.each_with_index do |card, index|
+      @deck.cards[index] = card.dup
+      @deck.cards[index].target = card.target.dup
+      @deck.cards[index].save!
+      @deck.cards[index].target.save!
+    end
 
     respond_to do |format|
       if @deck.save && !@assignment.blank?
@@ -85,6 +111,7 @@ class DecksController < ApplicationController
         format.json { render json: @deck.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /decks/1 or /decks/1.json
