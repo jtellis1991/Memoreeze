@@ -11,6 +11,12 @@ class DecksController < ApplicationController
     @decks = @user.decks
   end
 
+  # GET /decks or /decks.json
+  def public
+    @user = current_user
+    @decks = Deck.all.where(private: false)
+  end
+
   # GET /decks/1 or /decks/1.json
   def show
     @user = current_user

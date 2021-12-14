@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Your decks</h1>
+</div>
+
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Name</th>
+      <th scope="col">Number of Cards</th>
+      <th scope="col">Author</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr id="zerothDeck"></tr>
+    <% @decks.order(:id => :desc).each do |deck| %>
+      <%= render 'deck', deck: deck %>
+    <% end %>
+  </tbody>
+
+</table>
+
+
