@@ -17,20 +17,20 @@
 
 <p>
   <strong>LMS:</strong>
-  <%= @user.tool_consumer.product_family.capitalize + " - " + @user.tool_consumer.name %>
+  <%= @user.tool_consumer.product_family.capitalize + " - " + @user.tool_consumer.name unless @user.tool_consumer.blank? %>
 </p>
 
 <p>
   <strong>Time Zone:</strong>
-  <%= @user.review_setting.time_zone %>
+  <%= @user.review_setting.time_zone unless @user.review_setting.blank? %>
 </p>
 
 <p>
   <strong>New Cards / Day:</strong>
-  <%= @user.review_setting.new_per_day %>
+  <%= @user.review_setting.new_per_day unless @user.review_setting.blank?%>
 </p>
 
 <p>
   <strong>Reviews / Day:</strong>
-  <%= @user.review_setting.reviews_per_day %>
+  <%= @user.review_setting.reviews_per_day unless @user.review_setting.blank? %>
 </p>

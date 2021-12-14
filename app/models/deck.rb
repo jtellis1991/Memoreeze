@@ -7,6 +7,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  private    :boolean          default(TRUE)
 #
 class Deck < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: :user_id 
