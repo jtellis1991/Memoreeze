@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   get "decks/:id/name/edit", to: "decks#edit_name"
   patch "decks/:id/name", to: "decks#update_name"
+  get "decks/:id/private/edit", to: "decks#edit_private"
+  patch "decks/:id/private", to: "decks#update_private"
 
   #Ajaxify links for editing fields in Cards
   get "decks/:deck_id/cards/:id/explanation/edit" => "cards#edit_explanation"

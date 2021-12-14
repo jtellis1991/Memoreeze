@@ -1,0 +1,5 @@
+    <div id="<%= dom_id(deck) %>_private">
+      <%= link_to "decks/#{deck.id}/private/edit", class: "link-primary text-decoration-none", remote: true do %>
+          <%= deck.private %>
+      <% end %>
+    </div>

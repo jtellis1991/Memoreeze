@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: %i[ show edit edit_name update update_name destroy ]
+  before_action :set_deck, only: %i[ show edit edit_name edit_private update update_name update_private destroy ]
   #Added this because kept getting error with invalid authenticity token. 
   #Suspect issue might be the use the app within the tool consumer window
   skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
@@ -49,6 +49,13 @@ class DecksController < ApplicationController
     end
   end
 
+  def edit_private
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # POST /decks or /decks.json
   def create
     @deck = Deck.new(deck_params)
@@ -78,18 +85,6 @@ class DecksController < ApplicationController
   def update
     respond_to do |format|
       if @deck.update(deck_params)
-        format.html { redirect_to @deck, notice: "Deck was successfully updated." }
-        format.json { render :show, status: :ok, location: @deck }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update_name
-    respond_to do |format|
-      if @deck.update(name: params[:deck][:name])
         format.html { redirect_to @deck, notice: "Deck was successfully updated." }
         format.json { render :show, status: :ok, location: @deck }
         format.js
@@ -124,6 +119,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:name, :user_id)
+      params.require(:deck).permit(:name, :user_id, :private)
     end
 end

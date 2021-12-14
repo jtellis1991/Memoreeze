@@ -1,4 +1,4 @@
-<div id="<%= dom_id(deck)%>_name_form">
+<div id="<%= dom_id(deck)%>_private_form">
   <%= form_with(model: deck, url: "/decks/#{deck.id}", local: false) do |form| %>
     <% if deck.errors.any? %>
       <div id="error_explanation">
@@ -12,10 +12,8 @@
       </div>
     <% end %>
 
-        <%= form.label :name, class: "sr-only" %>
-        <%= form.text_area :name, class: "form-control", value: deck.name %>
-
-    <%= form.submit "Update Name", class: "btn btn-outline-secondary btn-block" %>
+        <%= form.label :private, class: "sr-only" %>
+        <%= form.select :private, [["True", "true"], ["False", "false"]], {:include_blank => true}, onchange: "Rails.fire(this.form, 'submit')" %>
 
   <% end %>
 </div>
