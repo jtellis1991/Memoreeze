@@ -1,0 +1,30 @@
+<tr id="<%= dom_id(card) %>" class="border text-center">
+  <td class="col-2">
+    <div id="<%= dom_id(card) %>_target">
+      <p>
+        <%= markdown(card.target.target) %>
+      </p>
+    </div>
+  </td>
+    <td class="col-2">
+    <div id="<%= dom_id(card) %>_explanation">
+      <p>
+        <%= markdown(card.target.explanation) %>
+      <p>    
+    </div>
+  </td>
+  <td class="col-4">
+    <div id="<%= dom_id(card) %>_illustrative_test">
+      <p>
+        <%= markdown(card.illustrative_test) %>
+      </p>
+    </div>
+  </td>
+  <td class="col-4">
+    <div id="<%= dom_id(card) %>_solution">
+      <p>
+        <%= markdown(card.solution) %>
+      <p>    
+    </div>
+  </td>
+</tr>
