@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get 'lti/submitscore'
   post 'lti/submitscore'
 
-  get "decks/public", to: "decks#public"
+  get "public/decks", to: "decks#public"
 
   get "courses/:course_id/assignments/:id/deck/edit" => "assignments#edit_deck"
 

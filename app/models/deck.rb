@@ -10,7 +10,7 @@
 #  private    :boolean          default(TRUE)
 #
 class Deck < ApplicationRecord
-  belongs_to :user, required: true, class_name: "User", foreign_key: :user_id 
+  belongs_to :owner, required: true, class_name: "User", foreign_key: :user_id 
   has_many :cards, class_name: "Card", foreign_key: :deck_id, dependent: :destroy
   has_many :assignments, class_name: "Assignment", foreign_key: :deck_id
   has_many :learners, through: :deck_accounts, source: :user

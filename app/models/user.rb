@@ -23,6 +23,8 @@ class User < ApplicationRecord
   belongs_to :tool_consumer, foreign_key: :tool_consumer_id, class_name: "ToolConsumer", required: false
 
   has_many :decks, foreign_key: :user_id, class_name: "Deck", dependent: :destroy 
+  has_many :own_decks, foreign_key: :owner_id, class_name: "Deck", dependent: :destroy
+
   has_many :floating_decks, -> { where(assignment_id: nil) }, foreign_key: :user_id, class_name: "Deck"
 
   has_many :courses, foreign_key: :user_id, class_name: "Course", dependent: :destroy
@@ -36,5 +38,7 @@ class User < ApplicationRecord
 
   has_many :reviews, foreign_key: :user_id, class_name: "Review", dependent: :destroy
   has_many :deck_accounts, foreign_key: :user_id, class_name: "DeckAccount", dependent: :destroy
+
+
 
 end
