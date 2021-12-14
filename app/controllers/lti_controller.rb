@@ -2,7 +2,7 @@
 
 class LtiController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :launch # for lti integration
-  after_action :allow_iframe, only: [:launch]
+  skip_before_action :authenticate_user!, only: :launch # for lti integration
 
   def launch
     # If set, then hide the header and footer
@@ -40,8 +40,9 @@ class LtiController < ApplicationController
     @tool_consumer = ToolConsumer.create_with(product_family: params[:tool_consumer_info_product_family_code], name: params[:tool_consumer_instance_name]).find_or_create_by(guid: params[:tool_consumer_instance_guid])
     @tool_consumer.update(product_family: params[:tool_consumer_info_product_family_code], name: params[:tool_consumer_instance_name])
 
-    @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full]).find_or_create_by(tc_user_id: params[:user_id])
+    @user = User.create_with(tool_consumer_id: @tool_consumer.id, roles: params[:roles], name: params[:lis_person_name_full], email: 'email' + params[:user_id] + '@example.com', password: "password").find_or_create_by(tc_user_id: params[:user_id])
     @user.update(roles: params[:roles], name: params[:lis_person_name_full])
+    sign_in @user
 
     @course = Course.create_with(tool_consumer_id: @tool_consumer.id, context_title: params[:context_title], user_id: @user.id).find_or_create_by(context_id: params[:context_id])
     @course.update(context_title: params[:context_title])
