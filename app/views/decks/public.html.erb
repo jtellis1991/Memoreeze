@@ -14,7 +14,7 @@
   </thead>
   
   <tbody>
-    <tr id="zerothDeck"></tr>
+    <tr id="zerothPublicDeck"></tr>
     <% @decks.order(:id => :desc).each do |deck| %>
       <%= render 'public_deck', deck: deck, user: @user %>
     <% end %>

@@ -9,7 +9,7 @@
   <td class="col-4 align-middle">
     <div id="<%= dom_id(deck) %>_name">
       <% if deck.owner == user %>
-        <%= link_to "decks/#{deck.id}/name/edit", class: "link-primary text-decoration-none", remote: true do %>
+        <%= link_to "/decks/#{deck.id}/name/edit", class: "link-primary text-decoration-none", remote: true do %>
           <%= deck.name %>
         <% end %>
       <% else %>
