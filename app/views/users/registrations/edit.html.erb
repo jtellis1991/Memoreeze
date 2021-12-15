@@ -56,6 +56,32 @@
           <hr class="mt-4">
 
           <div class="form-group">
+            <% name_was_invalid = resource.errors.include?(:name) %>
+
+            <% name_class = "form-control" %>
+
+            <% if was_validated %>
+              <% if name_was_invalid %>
+                <% name_class << " is-invalid" %>
+              <% else %>
+                <% name_class << " is-valid" %>
+              <% end %>
+            <% end %>
+
+            <%= f.label :name %>
+
+            <%= f.text_field :name, :class => name_class, :placeholder => "Enter name" %>
+
+            <% if name_was_invalid %>
+              <% resource.errors.full_messages_for(:name).each do |message| %>
+                <div class="invalid-feedback d-flex">
+                  <%= message %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="form-group">
             <% email_was_invalid = resource.errors.include?(:email) %>
 
             <% email_class = "form-control" %>
