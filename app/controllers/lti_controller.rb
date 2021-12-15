@@ -90,7 +90,7 @@ class LtiController < ApplicationController
       # go through all cards in the assigned deck and create a Card Account if it does not exist. 
       @deck.cards.each do |card|
         if @deck_account.card_accounts.where(card_id: card.id).blank?
-          CardAccount.create(deck_account_id: @deck_account.id, card_id: card.id, next_review_due: Time.now.in_time_zone(@deck.user.review_setting.time_zone).to_date)
+          CardAccount.create(deck_account_id: @deck_account.id, card_id: card.id, next_review_due: Time.now.in_time_zone(@deck.owner.review_setting.time_zone).to_date)
         end
       end
 
