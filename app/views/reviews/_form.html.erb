@@ -3,7 +3,7 @@
 </h1>
 
 <h3 class="text-center mb-5 collapse multi-collapse" id="solution">
-  <%= markdown(card_account.card.solution) %>
+  <%= markdown(card_account.card.solution.gsub(card_account.card.target.target, "<mark>" + card_account.card.target.target + "</mark>")) %>
 </h3>
 
 <ul class="list-group list-group-flush collapse multi-collapse" id="explanation">
