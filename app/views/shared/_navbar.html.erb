@@ -2,7 +2,16 @@
   <div class="container d-flex">
     <% if @user.roles != "Student" %>
         
-      <%= link_to "Memoreeze", dashboard_path, class: "navbar-brand" %>
+      <%= link_to "Vitamins", dashboard_path, class: "navbar-brand text-info" %>
+
+      <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to dashboard_path, class: "nav-link" do %>
+              <i class="fas fa-pills"></i>
+              Reviews
+            <% end %>
+          </li>
+      </ul>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,7 +55,7 @@
 
             <li class="nav-item">
               <%= link_to decks_path, class: "nav-link" do %>
-                <i class="fas fa-home fa-fw"></i>
+                <i class="fas fa-layer-group fa-fw"></i>
                 Your Decks
               <% end %>
             </li>
