@@ -1,14 +1,14 @@
 <h1 class="text-center mb-5">
-  <%= card.illustrative_test %>
+  <%= markdown(card.illustrative_test.gsub(card.target.target, "<mark>" + card.target.target + "</mark>")) %>
 </h1>
 
 <h3 class="text-center mb-5 collapse multi-collapse" id="solution">
-  <%= card.solution %>
+  <%= markdown(card.solution) %>
 </h3>
 
 <ul class="text-center list-group list-group-flush collapse multi-collapse" id="explanation">
     <li class="list-group-item"></li>
-    <li class="list-group-item"><%= card.target.explanation %></li>
+    <li class="list-group-item"><%= markdown(card.target.explanation) %></li>
 </ul>
 
 <div class="row collapse multi-collapse" id="result">
