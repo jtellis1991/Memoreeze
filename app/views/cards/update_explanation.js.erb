@@ -1,1 +1,2 @@
 $("#<%= dom_id(@card) %>_explanation_form").replaceWith("<%= j(render("cards/explanation", card: @card))%>")
+$("#previewForm").html("<%= j(render("preview", card: @card))%>")

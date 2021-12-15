@@ -1,22 +1,22 @@
 <tr id="<%= dom_id(card) %>" class="border text-center">
   <td class="col-1">
-    <div class="btn btn-link btn-lg text-secondary" data-toggle="modal" data-target="#newReview" id="<%= dom_id(card) %>_show">
+    <div class="btn btn-link btn-lg text-secondary" data-toggle="modal" data-target="#preview" id="<%= dom_id(card) %>_show">
       <i class="fa fa-eye" aria-hidden="true"></i>
     </div> 
   </td>
 
   <!-- Modal -->
-  <div class="modal fade" id="newReview" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="newReviewLabel" aria-hidden="true">
+  <div class="modal fade" id="preview" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="previewLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <button class="btn btn-outline-primary btn-lg modal-title" id="newReviewLabel" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="solution result explanation"><%= card.target.target %></button>
+          <button class="btn btn-outline-primary btn-lg modal-title" id="previewLabel" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="solution result explanation"><%= card.target.target %></button>
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" id="newReviewForm">
+        <div class="modal-body" id="previewForm">
           <%= render 'preview', card: card %>
         </div>
       </div>
