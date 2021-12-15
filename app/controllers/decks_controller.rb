@@ -91,12 +91,14 @@ class DecksController < ApplicationController
     @target_deck = Deck.find(params[:deck_id])
     @deck = @target_deck.dup
     @deck.owner = @user
+    @deck.private = true
     @deck.save!  
     @target_deck.cards.each_with_index do |card, index|
-      @deck.cards[index] = card.dup
-      @deck.cards[index].target = card.target.dup
-      @deck.cards[index].save!
-      @deck.cards[index].target.save!
+      new_card = card.dup
+      new_card.update(deck_id: @deck.id)
+      new_target = card.target.dup
+      new_target.save!
+      new_card.update(target_id: new_target.id)
     end
 
     respond_to do |format|
